@@ -1,0 +1,144 @@
+﻿@*@model IEnumerable<GesPhloraClassLibrary.Models.Percurso>*@
+@model GesNaturaMVC.ViewModels.PercursoVM
+
+
+@*<head>
+  <link rel="stylesheet" href="style.css" />
+</head>*@
+
+
+
+<style>
+  
+  #map {
+    height: 600px;
+    width: 100%;
+  }
+  
+</style>
+<script src="~/Scripts/markerclusterer.js"></script>
+<script>
+    
+ function initMap() {
+
+        var model = @Html.Raw(Json.Encode(Model));
+        console.dir(model);
+
+        //var centro = { lat: model[0].GPS_Lat_Inicio, lng: model[0].GPS_Long_Inicio }
+        //var centro = { lat: model[0].Latitude, lng: model[0].Longitude }
+        var centro = { lat: model.Latitude, lng: model.Longitude }
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: centro,
+            mapTypeId: 'hybrid'
+        });
+        var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+        });
+
+
+        var markers = [];
+        for (var i = 0; i < model.Cust.length; i++) {
+            var item = model.Cust[i];
+            var infoWindowContent = item.Nome;
+            var coord = { lat: item.GPS_Lat_Inicio, lng: item.GPS_Long_Inicio };
+
+            //var coord = { lat: item.Latitude, lng: item.Longitude };
+            
+            var marker = new google.maps.Marker({
+              position: coord,
+              //map: map
+              icon: {
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: 4,
+                  strokeWeight: 8,
+                  strokeColor: "#B40404"
+              }
+            });
+            markers.push(marker);
+            
+            
+                        
+            //google.maps.event.addDomListener(window, 'load', initMap); 
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    var item = model.Cust[i];
+                    var str = '<div>' +
+                        '<font size="3">' + item.Nome + '</font>' + '</div>' +
+                        '<div>' + item.Descricao + '</div>';
+
+                    infowindow.setContent(str);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+        var options = {
+            //imagePath: 'https://drive.google.com/open?id=1C6u8xwaYPo0OlmuNr6IDMUJx66yRl84A'
+            imagePath: 'Content/Images/m'
+        };
+        console.dir(options);
+        var markerCluster = new MarkerClusterer(map, markers, options);
+        console.dir(markerCluster);
+        //google.maps.event.addDomListener(window, 'load', initMap); 
+    }
+    
+  //(function (marker, data) {
+  //  google.maps.event.addListener(marker, "click", function (e) {
+  //    infoWindow.setContent(data.description);
+  //    infoWindow.open(map, marker);
+  //  });
+  //})(marker, data);
+
+  //function loadKmlLayer(src, map) {
+  //  var kmlLayer = new google.maps.KmlLayer(src, {
+  //    suppressInfoWindows: true,
+  //    preserveViewport: false,
+  //    map: map
+  //  });
+  //}
+    
+</script>
+<script>
+    function initialize() {
+        var center = new google.maps.LatLng(51.5074, 0.1278);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: center,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var markers = [];
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(51.5074, 0.1278)
+        });
+        markers.push(marker);
+        var marker1 = new google.maps.Marker({
+            position: new google.maps.LatLng(51.5077, 0.1278)
+        });
+        markers.push(marker1);
+        var marker2 = new google.maps.Marker({
+            position: new google.maps.LatLng(51.5079, 0.1278)
+        });
+        markers.push(marker2);
+
+        var options = {
+            imagePath:'Content/Images/icon.png'
+        };
+
+        var markerCluster = new MarkerClusterer(map, markers, options);
+    }
+
+    //google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<div id="map"></div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEBJUK6YsccYEXnT_S2PU8PN5zXxkc4Fs&callback=initMap">
+</script>
+@*<script src="~/Scripts/mapScript.js"></script>*@
+
+

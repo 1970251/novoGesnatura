@@ -1,0 +1,88 @@
+﻿@model GesNaturaMVC.ViewModels.EspecieViewModel
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Nome)</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="slideshow-container">
+                @foreach (var item in Model.listaFotosVM)
+                {
+                    <div>
+                        @if (item.Aprovado)
+                        {
+                            <div class="mySlides fadeFoto">
+                                <img src="@Url.Content(item.Caminho)" style="width:100%">
+                            </div>
+                        }
+                    </div>
+               
+
+
+
+                }
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Detalhes</h4>
+            <dl>
+                <dt style="font-size:medium">Descricao: </dt>
+                <dd>@Model.Descricao</dd>                                              
+                <dt style="font-size:medium">Calendário: </dt>
+                <dd>@Model.Calendario</dd>
+                <dt style="font-size:medium">Abundância: </dt>
+                <dd>@Model.Abundancia</dd>
+            </dl>
+
+            
+        </div>
+    </div>
+</div>
+<br>
+<div>
+    
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = @Model.ID }) |
+        @Html.ActionLink("Adicionar Imagem", "Create", "FotoAtlas", new { id = @Model.ID },null) |
+        @Html.ActionLink("Back to List", "Index")
+
+    </p>
+</div>
+
+   
+
+
+
+
+
+
+   
+    
+    
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    //var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    //for (i = 0; i < dots.length; i++) {
+    //    dots[i].className = dots[i].className.replace(" active", "");
+    //}
+    slides[slideIndex-1].style.display = "block";
+    //dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 5000); // Muda a cada 5 segundos
+}
+</script>
+

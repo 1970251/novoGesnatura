@@ -1,0 +1,207 @@
+﻿@model GesNaturaMVC.ViewModels.PercursoVM
+    
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Percursos Pedestres</h2>
+<p>
+    @Html.ActionLink("Criar Novo Percurso", "CreateMap")
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("SortField", Model.SortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        @Html.Hidden("PageCount", Model.PageCount)
+        @Html.Hidden("PageSize", Model.PageSize)
+        @Html.Hidden("CurrentPageIndex", Model.CurrentPageIndex)
+
+        @Html.Hidden("TipologiaSelecionada", Model.TipologiaSelecionada)
+        @Html.Hidden("DificuldadeSelecionada", Model.DificuldadeSelecionada)
+    }
+        
+</p>
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-6">
+            <div class="customDiv" style="font-size:inherit">
+                <div >
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @*<a href="#" data-sortfield="TipologiaSelecionada" class="header">@Html.DisplayNameFor(model => model.Cust.First().Tipologia)</a>*@
+                            </th>
+                            <th>
+
+                            </th>
+                            <th></th>
+                        </tr>
+
+
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                               
+                            </th>
+
+                            <th>
+                                <a href="#" data-sortfield="TipologiaSelecionada" class="header">@Html.DisplayNameFor(model => model.Cust.First().Tipologia)</a>
+
+                                @*@Html.DisplayNameFor(model => model.Tipologia)*@
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Distancia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Duracao)
+                            </th>
+                            <th>
+                                <a href="#" data-sortfield="DificuldadeSelecionada" class="header">@Html.DisplayNameFor(model => model.Cust.First().Dificuldade)</a>
+                                @*@Html.DisplayNameFor(model => model.Dificuldade)*@
+                            </th>
+
+                        </tr>
+
+
+                        @foreach (var item in Model.Cust)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Nome, "Details", "Percursos", new { Id = item.ID }, null)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tipologia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Distancia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DuracaoAproximada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dificuldade)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                    <h6>Opções</h6>
+                   
+                    <table>
+                        <tr>
+                           
+                            <th>
+                                <p>Tipologia</p>
+                                
+                                    @Html.DropDownListFor(model => model.Tipologia,
+                                    new SelectList(Model.CustDDL, "Tipologia", "Tipologia", Model.TipologiaSelecionada), "All", new { @id = "fn" })
+                                
+                                
+                            </th>
+                            <th>
+                                <p>  </p>
+                            </th>
+                            <th>
+                                <p>Dificuldade</p>
+                                @Html.DropDownListFor(model => model.Dificuldade,
+                                new SelectList(Model.CustDDL, "Dificuldade", "Dificuldade", Model.DificuldadeSelecionada), "All", new { @id = "ln" })
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+            </div>
+            <div class="container">
+                <ul class="pagination">
+                    @for (var i = 0; i < Model.PageCount; i++)
+                    {
+
+                        if (i == Model.CurrentPageIndex)
+                        {
+
+                            <li class="current-pager" id="CurrentPageIndex">@(i + 1)</li>
+                        }
+                        else
+                        {
+
+                            <li><a href="#" data-pageindex="@i" class="pager">@(i + 1)</a></li>
+
+
+                        }
+
+                    }
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="customDiv">
+                <div>
+                    @Html.Partial("Maps")
+
+                </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+
+
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".header").click(function (evt) {
+            var sortfield = $(evt.target).data("sortfield");
+            if ($("#SortField").val() == sortfield) {
+                if ($("#SortDirection").val() == "ascending") {
+                    $("#SortDirection").val("descending");
+                }
+                else{
+                    $("#SortDirection").val("ascending");
+                }
+            }
+            else {
+                $("#SortField").val(sortfield);
+                $("#SortDirection").val("ascending");
+            }
+            evt.preventDefault();
+            $("form").submit();
+
+        });
+
+        $(".pager").click(function (evt) {
+            var pageindex = $(evt.target).data("pageindex");
+            $("#CurrentPageIndex").val(pageindex);
+            evt.preventDefault();
+            $("form").submit();
+        });
+
+        $("#fn").change(function (evt) {
+            $("#TipologiaSelecionada").val($("#fn").val().trim());
+            evt.preventDefault();
+            $("form").submit();
+        })
+        $("#ln").change(function (evt) {
+            $("#DificuldadeSelecionada").val($("#ln").val().trim());
+            evt.preventDefault();
+            $("form").submit();
+        })
+    });
+</script>
+
+
+
+        
+        

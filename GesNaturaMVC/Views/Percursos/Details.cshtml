@@ -1,0 +1,207 @@
+﻿@model GesNaturaMVC.ViewModels.PercursoVM
+
+@*@foreach (var item in Model.ListaComentarios)
+{
+   
+    var ratingTotal = item.SomaRating;
+    var numRatings = item.ContRating;
+
+    decimal rating = 0;
+    if(numRatings>0)
+    {
+        rating = (ratingTotal / numRatings);
+    }
+    
+    var totalRating = decimal.Parse(rating.ToString());
+    
+
+}*@
+@{
+    var ratingTotal = ViewBag.SomaRating;
+    var numRatings = ViewBag.ContRating;
+
+    decimal rating = 0;
+    if (numRatings > 0)
+    {
+        rating = (ratingTotal / numRatings);
+    }
+
+    var totalRating = decimal.Parse(rating.ToString());
+    
+}
+<div>
+    <h4>
+        @Html.DisplayFor(model=>model.Nome)
+    </h4>
+    <p>Criado por @Html.DisplayFor(model => model.UserName)</p>
+    <span class="starFadeN" id="sRate1"></span>
+    <span class="starFadeN" id="sRate2"></span>
+    <span class="starFadeN" id="sRate3"></span>
+    <span class="starFadeN" id="sRate4"></span>
+    <span class="starFadeN" id="sRate5"></span>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("| Delete", "Delete", new { id=Model.ID})
+            }
+        }
+        
+    </p>
+    <hr />
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="customDiv">
+                <div >
+                    @foreach (var item in Model.ListaFotoPercursoVM)
+                    {
+                        <div class="mySlides fadeFoto">
+
+                            <img src="@Url.Content("/"+item.Caminho)" style="width:50%">
+
+                        </div>
+
+                    }
+                    
+                    <br>
+                    <div >
+                        <dl >
+
+                            <dt >
+                                @Html.DisplayNameFor(model => model.Descricao)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Descricao)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Tipologia)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Tipologia)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Dificuldade)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Dificuldade)
+                            </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Distancia)*@
+                                <i class="large material-icons" style="color:aqua">linear_scale</i>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Distancia) Kms
+                            </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Duracao)*@
+                                <i class="large material-icons" style="color:aqua">restore</i>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Duracao) h
+                            </dd>
+                          <dt>Lista de Espécies</dt>
+                          
+                          @foreach (var item in Model.ListaEspeciesVM)
+                          {
+                           <dd>@Html.ActionLink(item.Nome, "Details","Especies",new { id = item.ID },null)</dd>
+                            
+                          }
+                            
+                        </dl>
+                    </div>
+                    
+                                       
+                        
+                    
+                    @foreach (var c in Model.ListaComentarios)
+                    {
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i>@c.DataHora</i>
+                                <i>@c.UserName</i>
+                                <br />
+                                @for (var i = 1; i <= c.Classificacao; i++)
+                                {
+                                    <span class="starGlowN"></span>
+                                }
+                                @for (var i = (c.Classificacao + 1); i <= 5; i++)
+                                {
+                                    <span class="starFadeN"></span>
+                                }
+                            </div>
+                            <div class="col-md-9">
+                                @Html.Raw(c.Comentario.Replace("\n", "<br />"))
+
+
+                            </div>
+                        </div>
+                    }
+                    <hr />
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="customDiv">
+                <div>
+                    @Html.Partial("KmlMapView")
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+   
+@Html.Partial("_CommentBox")
+
+   
+
+<br />
+
+
+<script>
+    var slideIndex = 0;
+    $(function () {
+        SCRate();
+    });
+    showSlides();
+   
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides fadeFoto");
+        //var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        //for (i = 0; i < dots.length; i++) {
+        //    dots[i].className = dots[i].className.replace(" active", "");
+        //}
+        slides[slideIndex - 1].style.display = "block";
+        //dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 5000); // Muda a cada 5 segundos
+    }
+
+    function SCRate() {
+        for (var i = 1; i <= @totalRating ; i++) {
+            $("#sRate" + i).attr('class', 'starGlowN');
+        }
+    }
+    
+
+</script>
+

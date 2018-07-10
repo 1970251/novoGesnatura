@@ -1,0 +1,85 @@
+﻿@model GesNaturaMVC.ViewModels.PercursoVM
+@{
+    ViewBag.Title = "Dados";
+}
+
+<h2>Dados Estatísticos</h2>
+
+<h4>Lista de percursos criados</h4>
+
+<br>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    var userName = @Model.UserName;
+    var userRegistado = User.Identity.Name.ToString();
+    if (userName == userRegistado)
+    {
+        <div>
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+
+                </dt>
+                <dd>
+
+                    @Html.DisplayFor(model => model.Nome)
+
+                </dd>
+                <dt>
+                @Html.DisplayNameFor(model => model.Classificacao)
+
+                </dt>
+                <dd>
+
+                    @Html.DisplayFor(model => model.Classificacao)
+
+                </dd>
+            </dl>
+        </div>
+
+
+    }
+
+}
+
+
+<script>
+    function dados() {
+        var model = @Html.Raw(Json.Encode(Model));
+        var userName = @Html.Raw(Json.Encode(Model.UserName));
+
+        var userRegistado = @Html.Raw(Json.Encode(User.Identity.Name));
+        var nome = model.nome;
+        console.log(userRegistado);
+        console.log(userName);
+        var abreDiv = '<div>';
+        var abreTabela = '<table class="table">';
+        var abreTr = '<tr>';
+        var abreTh = '<th>';
+        var fechaTh = '</th>';
+        var fechaTr = '</tr>';
+        var fechaTabela = '</table>';
+        var fechaDiv = '</div>';
+        if (userName == userRegistado) {
+            @*abreDiv;
+            abreTabela;
+            abreTr;
+            abreTh;
+                var nPercurso = @Html.Raw(Json.Encode(Model.Nome));
+                nPercurso;
+                console.log(nPercurso);
+            fechaTh;
+            fechaTr;
+            fechaTabela;
+            fechaDiv;*@
+        }
+
+
+    }
+    dados();
+
+
+</script>
