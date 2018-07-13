@@ -161,7 +161,7 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, LastName=model.LastName, FirstName=model.FirstName };
-                var utilizador = new Utilizador { ClientID = user.Id, UserName = user.UserName};
+                var utilizador = new Utilizador { UtilizadorID = user.Id, UserName = user.UserName};
                 db.Utilizadors.Add(utilizador);
                 await db.SaveChangesAsync();
                 var result = await UserManager.CreateAsync(user, model.Password);

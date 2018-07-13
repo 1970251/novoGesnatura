@@ -1651,4 +1651,4 @@ C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.cs
 C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.csproj.CopyComplete
 C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.dll
 C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.pdb
-C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.PercPerc.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.pperc_sem_percurso.resources

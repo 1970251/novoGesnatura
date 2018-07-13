@@ -27,6 +27,7 @@ namespace GesNaturaMVC.ViewModels
         public List<FotoPoiVM> ListaFotoPoiVM { get; set; }
         public List<PercursoComentarioVM> ListaComentarios { get; set; }
         public List <EspecieViewModel> ListaEspeciesVM { get; set; }
+        public List <PercursoPercorridoVM> ListaPercurosPercorridosVM { get; set; }
 
   }
 }

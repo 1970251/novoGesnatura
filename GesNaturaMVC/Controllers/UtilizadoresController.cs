@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using GesNaturaMVC.DAL;
 using GesNaturaMVC.Models;
+using GesNaturaMVC.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace GesNaturaMVC.Controllers
 {
@@ -19,6 +21,29 @@ namespace GesNaturaMVC.Controllers
         public ActionResult Index()
         {
             return View(db.Utilizadors.ToList());
+        }
+        public ActionResult Dados(string clientID)
+        {
+            PercursoVM percVM = new PercursoVM();
+            percVM.ListaPercurosPercorridosVM = new List<PercursoPercorridoVM>();
+            
+            var listaPercursos = db.PercursosPercorridos.Where(pr => pr.UtilizadorID == clientID).ToList();
+
+            foreach (var item in listaPercursos)
+            {
+                PercursoPercorridoVM ppercVM = new PercursoPercorridoVM();
+                ppercVM.Nome = item.Nome;
+                ppercVM.ID = item.PercursoID;
+                ppercVM.ClientID = item.UtilizadorID;
+                ppercVM.Duracao = item.Duracao;
+                
+                percVM.ListaPercurosPercorridosVM.Add(ppercVM);
+            }
+
+
+
+
+            return View(percVM);
         }
 
         // GET: Utilizadores/Details/5

@@ -32,7 +32,6 @@ namespace GesNaturaMVC.DAL
 
         public DbSet<Utilizador> Utilizadors { get; set; }
         public DbSet<PercursoComentario> PercursoComentarios { get; set; }
-
-        public System.Data.Entity.DbSet<GesNaturaMVC.Models.PercursosPercorridos> PercursosPercorridos { get; set; }
+        public DbSet<PercursosPercorridos> PercursosPercorridos { get; set; }
     }
 }

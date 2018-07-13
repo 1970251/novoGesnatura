@@ -401,9 +401,9 @@
     <Compile Include="Migrations\201807102246289_ClientesNovos.Designer.cs">
       <DependentUpon>201807102246289_ClientesNovos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807121749072_PercPerc.cs" />
-    <Compile Include="Migrations\201807121749072_PercPerc.Designer.cs">
-      <DependentUpon>201807121749072_PercPerc.cs</DependentUpon>
+    <Compile Include="Migrations\201807131731300_pperc_sem_percurso.cs" />
+    <Compile Include="Migrations\201807131731300_pperc_sem_percurso.Designer.cs">
+      <DependentUpon>201807131731300_pperc_sem_percurso.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -419,6 +419,7 @@
     <Compile Include="ViewModels\FotoPercursoVM.cs" />
     <Compile Include="ViewModels\FotoPoiVM.cs" />
     <Compile Include="ViewModels\PercursoComentarioVM.cs" />
+    <Compile Include="ViewModels\PercursoPercorridoVM.cs" />
     <Compile Include="ViewModels\PercursoVM.cs" />
     <Compile Include="ViewModels\PoiVM.cs" />
   </ItemGroup>
@@ -610,17 +611,17 @@
     <Content Include="Views\Percursos\CreateMapKml.cshtml" />
     <Content Include="Views\Shared\KmlMap.cshtml" />
     <Content Include="Views\Client\_Dados.cshtml" />
-    <Content Include="Views\Client\Dados.cshtml" />
+    <Content Include="Views\Client\__Dados.cshtml" />
     <Content Include="Views\PercursosPercorridos\Create.cshtml" />
     <Content Include="Views\PercursosPercorridos\Delete.cshtml" />
     <Content Include="Views\PercursosPercorridos\Details.cshtml" />
     <Content Include="Views\PercursosPercorridos\Edit.cshtml" />
     <Content Include="Views\PercursosPercorridos\Index.cshtml" />
+    <Content Include="Views\Utilizadores\Dados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Foto\" />
     <Folder Include="Views\Upload\" />
-    <Folder Include="Views\Utilizadores\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -650,8 +651,8 @@
     <EmbeddedResource Include="Migrations\201807102246289_ClientesNovos.resx">
       <DependentUpon>201807102246289_ClientesNovos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807121749072_PercPerc.resx">
-      <DependentUpon>201807121749072_PercPerc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807131731300_pperc_sem_percurso.resx">
+      <DependentUpon>201807131731300_pperc_sem_percurso.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

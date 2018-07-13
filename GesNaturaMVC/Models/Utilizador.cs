@@ -10,7 +10,7 @@ namespace GesNaturaMVC.Models
 {
     public class Utilizador : IdentityUser
     {
-        public string ClientID { get; set; }
+        public string UtilizadorID { get; set; }
         public ICollection<Percurso> Percursos { get; set; }
     }
 }

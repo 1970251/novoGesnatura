@@ -39,14 +39,15 @@ namespace GesNaturaMVC.Controllers
         }
 
         // GET: PercursosPercorridos/Create
-        public ActionResult Create(int id)
+        public async Task<ActionResult> Create(int id, string nome)
         {
             PercursosPercorridos pperc = new PercursosPercorridos();
             pperc.PercursoID = id;
-            pperc.ClientID = User.Identity.GetUserId();
+            pperc.UtilizadorID= User.Identity.GetUserId();
+            pperc.Nome = nome;
             db.PercursosPercorridos.Add(pperc);
-            db.SaveChangesAsync();
-            return RedirectToAction("Index","Percursos",null);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Dados","Utilizadores",new { clientID = pperc.UtilizadorID});
             //return View();
         }
 
