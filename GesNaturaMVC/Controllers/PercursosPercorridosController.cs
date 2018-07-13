@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using GesNaturaMVC.DAL;
 using GesNaturaMVC.Models;
+using Microsoft.AspNet.Identity;
 
 namespace GesNaturaMVC.Controllers
 {
@@ -38,15 +39,15 @@ namespace GesNaturaMVC.Controllers
         }
 
         // GET: PercursosPercorridos/Create
-        public ActionResult Create(int id, string clientID)
+        public ActionResult Create(int id)
         {
             PercursosPercorridos pperc = new PercursosPercorridos();
             pperc.PercursoID = id;
-            pperc.ClientID = clientID;
+            pperc.ClientID = User.Identity.GetUserId();
             db.PercursosPercorridos.Add(pperc);
             db.SaveChangesAsync();
-            //return RedirectToAction("Details","Percursos",null);
-            return View();
+            return RedirectToAction("Index","Percursos",null);
+            //return View();
         }
 
         // POST: PercursosPercorridos/Create
