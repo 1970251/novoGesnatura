@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesNaturaMVC", "GesNaturaMV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesNaturaMVC.Tests", "GesNaturaMVC.Tests\GesNaturaMVC.Tests.csproj", "{B2598FC1-3B16-4969-B196-57083356E20E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesPhloraClassLibrary", "..\..\..\..\Visual Studio 2017\Projects\GesPhloraClassLibrary\GesPhloraClassLibrary\GesPhloraClassLibrary.csproj", "{70F35D35-31FB-4BF4-B6F8-56DCCFBF4388}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesPhloraClassLibrary", "..\..\..\Documents\Visual Studio 2017\Projects\GesPhloraClassLibrary\GesPhloraClassLibrary\GesPhloraClassLibrary.csproj", "{70F35D35-31FB-4BF4-B6F8-56DCCFBF4388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

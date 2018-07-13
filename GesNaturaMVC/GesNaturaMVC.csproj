@@ -401,6 +401,10 @@
     <Compile Include="Migrations\201807102246289_ClientesNovos.Designer.cs">
       <DependentUpon>201807102246289_ClientesNovos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807121749072_PercPerc.cs" />
+    <Compile Include="Migrations\201807121749072_PercPerc.Designer.cs">
+      <DependentUpon>201807121749072_PercPerc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -646,9 +650,12 @@
     <EmbeddedResource Include="Migrations\201807102246289_ClientesNovos.resx">
       <DependentUpon>201807102246289_ClientesNovos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807121749072_PercPerc.resx">
+      <DependentUpon>201807121749072_PercPerc.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2017\Projects\GesPhloraClassLibrary\GesPhloraClassLibrary\GesPhloraClassLibrary.csproj">
+    <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2017\Projects\GesPhloraClassLibrary\GesPhloraClassLibrary\GesPhloraClassLibrary.csproj">
       <Project>{70f35d35-31fb-4bf4-b6f8-56dccfbf4388}</Project>
       <Name>GesPhloraClassLibrary</Name>
     </ProjectReference>

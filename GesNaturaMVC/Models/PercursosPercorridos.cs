@@ -10,7 +10,10 @@ namespace GesNaturaMVC.Models
     public class PercursosPercorridos
     {
         public int ID { get; set; }
-        public IdentityUser User { get; set; }
-        public Percurso PercursoID { get; set; }
+        public string ClientID { get; set; }
+        public Utilizador Utilizador { get; set; }
+        public int PercursoID { get; set; }
+        public Percurso Percurso { get; set; }
+
     }
 }

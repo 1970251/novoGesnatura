@@ -184,7 +184,7 @@ namespace GesNaturaMVC.Controllers
             percursoVM.Dificuldade = percurso.Dificuldade;
             percursoVM.Tipologia = percurso.Tipologia;
             percursoVM.UserName = percurso.UserName;
-
+            percursoVM.ClientID = percurso.ClientID;
             percursoVM.Latitude = percurso.GPS_Lat_Inicio;
             percursoVM.Longitude = percurso.GPS_Long_Inicio;
             percursoVM.Kml = percurso.KmlPath;

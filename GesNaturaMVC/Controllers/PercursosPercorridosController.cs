@@ -38,8 +38,14 @@ namespace GesNaturaMVC.Controllers
         }
 
         // GET: PercursosPercorridos/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, string clientID)
         {
+            PercursosPercorridos pperc = new PercursosPercorridos();
+            pperc.PercursoID = id;
+            pperc.ClientID = clientID;
+            db.PercursosPercorridos.Add(pperc);
+            db.SaveChangesAsync();
+            //return RedirectToAction("Details","Percursos",null);
             return View();
         }
 
@@ -48,7 +54,7 @@ namespace GesNaturaMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID")] PercursosPercorridos percursosPercorridos)
+        public async Task<ActionResult> Create([Bind(Include = "ID,ClientID,PercursoID")] PercursosPercorridos percursosPercorridos)
         {
             if (ModelState.IsValid)
             {

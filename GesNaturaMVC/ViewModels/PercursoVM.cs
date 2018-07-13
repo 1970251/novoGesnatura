@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GesNaturaMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace GesNaturaMVC.ViewModels
         public float Latitude { get; set; }
         public float Longitude { get; set; }
         public string UserName { get; set; }
+        public string ClientID { get; set; }
         public int Classificacao { get; set; }
         public DateTime DataHora { get; set; }
         public List<PoiVM> ListaPOIVM { get; set; }
