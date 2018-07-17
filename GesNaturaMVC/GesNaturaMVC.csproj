@@ -362,6 +362,7 @@
     <Compile Include="Controllers\OrdemsController.cs" />
     <Compile Include="Controllers\PercursoComentariosController.cs" />
     <Compile Include="Controllers\PercursosController.cs" />
+    <Compile Include="Controllers\PercursosCriadosController.cs" />
     <Compile Include="Controllers\PercursosPercorridosController.cs" />
     <Compile Include="Controllers\POIsController.cs" />
     <Compile Include="Controllers\ReinosController.cs" />
@@ -413,20 +414,31 @@
     <Compile Include="Migrations\201807170912168_DistanciaInPercPerc.Designer.cs">
       <DependentUpon>201807170912168_DistanciaInPercPerc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807170933572_createPercursosCriadosTable.cs" />
+    <Compile Include="Migrations\201807170933572_createPercursosCriadosTable.Designer.cs">
+      <DependentUpon>201807170933572_createPercursosCriadosTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171016070_updatePercursosCriados.cs" />
+    <Compile Include="Migrations\201807171016070_updatePercursosCriados.Designer.cs">
+      <DependentUpon>201807171016070_updatePercursosCriados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PercursosCriados.cs" />
     <Compile Include="Models\PercursosPercorridos.cs" />
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EspecieViewModel.cs" />
+    <Compile Include="ViewModels\EstatisticaVM.cs" />
     <Compile Include="ViewModels\FamiliaViewModel.cs" />
     <Compile Include="ViewModels\FotoAtlasViewModel.cs" />
     <Compile Include="ViewModels\FotoPercursoVM.cs" />
     <Compile Include="ViewModels\FotoPoiVM.cs" />
     <Compile Include="ViewModels\PercursoComentarioVM.cs" />
+    <Compile Include="ViewModels\PercursoCriadoVM.cs" />
     <Compile Include="ViewModels\PercursoPercorridoVM.cs" />
     <Compile Include="ViewModels\PercursoVM.cs" />
     <Compile Include="ViewModels\PoiVM.cs" />
@@ -629,6 +641,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Foto\" />
+    <Folder Include="Views\PercursosCriados\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
@@ -667,6 +680,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807170912168_DistanciaInPercPerc.resx">
       <DependentUpon>201807170912168_DistanciaInPercPerc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807170933572_createPercursosCriadosTable.resx">
+      <DependentUpon>201807170933572_createPercursosCriadosTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171016070_updatePercursosCriados.resx">
+      <DependentUpon>201807171016070_updatePercursosCriados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

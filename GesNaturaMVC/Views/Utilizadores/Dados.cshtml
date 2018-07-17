@@ -1,4 +1,5 @@
-﻿@model GesNaturaMVC.ViewModels.PercursoVM
+﻿@*@model GesNaturaMVC.ViewModels.PercursoVM*@
+@model GesNaturaMVC.ViewModels.EstatisticaVM
 @{
     ViewBag.Title = "Dados";
 }
@@ -13,49 +14,49 @@
             <div class="customDiv">
                 <div>
                     <h4>Lista de percursos criados</h4>
-                    @*@foreach (var item in Model)
-                    {
-
-                        if (item.UserName == User.Identity.Name.ToString())
+                    @*@foreach (var item in Model.)
                         {
-                            <p>
-                                
-                                @Html.ActionLink(item.Nome, "Details", "Percursos", new { Id = item.ID }, null)
-                                
-                            </p>
 
-                        }
-                        
-                        <div class="clearfix"></div>
-                    }*@
+                            if (item.UserName == User.Identity.Name.ToString())
+                            {
+                                <p>
+
+                                    @Html.ActionLink(item.Nome, "Details", "Percursos", new { Id = item.ID }, null)
+
+                                </p>
+
+                            }
+
+                            <div class="clearfix"></div>
+                        }*@
 
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <h4>Percursos Percorridos</h4>
-            
+
             <table>
-                
+
                 @foreach (var item in Model.ListaPercurosPercorridosVM)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
 
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.ID)
 
-                    </td>*@
-                </tr>
-                    
+                            </td>*@
+                    </tr>
 
-                    
+
+
                 }
             </table>
-            
-            
+
+
             <p></p>
         </div>
         <div class="col-md-4">
@@ -65,9 +66,9 @@
     </div>
 </div>
 @*<script>
-    var class = 0;
-    function maiorClass(class) {
+        var class = 0;
+        function maiorClass(class) {
 
-    }
-</script>*@
+        }
+    </script>*@
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using GesNaturaMVC.Models;
 
 namespace GesNaturaMVC.Controllers
 {
@@ -167,13 +168,15 @@ namespace GesNaturaMVC.Controllers
             Percurso percurso = db.Percursos.Where(p => p.ID == id).
             Include("POIs").Include("FotoPercursos").Include("PercursoComentarios").Include("Especies").FirstOrDefault();
 
+            PercursosCriados percCriado = db.PercursosCriados.Where(pc => pc.PercursoID == id).FirstOrDefault();
+
             PercursoVM percursoVM = new PercursoVM();
             percursoVM.ListaPOIVM = new List<PoiVM>();
             percursoVM.ListaFotoPercursoVM = new List<FotoPercursoVM>();
             percursoVM.ListaFotoPoiVM = new List<FotoPoiVM>();
             percursoVM.ListaComentarios = new List<PercursoComentarioVM>();
             percursoVM.ListaEspeciesVM = new List<EspecieViewModel>();
-            
+                      
             
 
             percursoVM.ID = percurso.ID;
@@ -183,8 +186,8 @@ namespace GesNaturaMVC.Controllers
             percursoVM.Duracao = percurso.DuracaoAproximada;
             percursoVM.Dificuldade = percurso.Dificuldade;
             percursoVM.Tipologia = percurso.Tipologia;
-            percursoVM.UserName = percurso.UserName;
-            percursoVM.ClientID = User.Identity.GetUserId();
+            percursoVM.ClientID = percCriado.ClientID;
+            percursoVM.NomeCliente = percCriado.NomeCliente;
             percursoVM.Latitude = percurso.GPS_Lat_Inicio;
             percursoVM.Longitude = percurso.GPS_Long_Inicio;
             percursoVM.Kml = percurso.KmlPath;
@@ -279,14 +282,14 @@ namespace GesNaturaMVC.Controllers
        [Authorize(Roles = "Supervisor,Admin")]
             public ActionResult Create(float lat, float lng)
         {
-          Percurso percurso = new Percurso();
-          percurso.GPS_Lat_Inicio = lat;
-          percurso.GPS_Long_Inicio = lng;
+              Percurso percurso = new Percurso();
+              percurso.GPS_Lat_Inicio = lat;
+              percurso.GPS_Long_Inicio = lng;
 
-          
-          ViewBag.POIs = new SelectList(db.POIs, "ID", "Nome");
-          ViewBag.FotoPercursos = new SelectList(db.FotoPercursos, "ID", "Nome");
-          ViewBag.Especies = new SelectList(db.Especies, "ID", "Nome");
+              
+              ViewBag.POIs = new SelectList(db.POIs, "ID", "Nome");
+              ViewBag.FotoPercursos = new SelectList(db.FotoPercursos, "ID", "Nome");
+              ViewBag.Especies = new SelectList(db.Especies, "ID", "Nome");
           return View(percurso);
         }
         //// GET: Percursos/Create
@@ -305,13 +308,17 @@ namespace GesNaturaMVC.Controllers
     // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nome,Descricao,Tipologia,Distancia,DuracaoAproximada,Dificuldade,GPS_Lat_Inicio,GPS_Long_Inicio,KmlPath,POIs,Especies,UserName")] Percurso percurso)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nome,Descricao,Tipologia,Distancia,DuracaoAproximada,Dificuldade,GPS_Lat_Inicio,GPS_Long_Inicio,KmlPath,POIs,Especies")] Percurso percurso)
         {
 
             if (ModelState.IsValid)
             {
-                percurso.UserName = User.Identity.GetUserName();
                 db.Percursos.Add(percurso);
+                await db.SaveChangesAsync();
+                PercursosCriados percursosCriados = new PercursosCriados();
+                percursosCriados.ClientID = User.Identity.GetUserId();
+                percursosCriados.PercursoID = percurso.ID;
+                db.PercursosCriados.Add(percursosCriados);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

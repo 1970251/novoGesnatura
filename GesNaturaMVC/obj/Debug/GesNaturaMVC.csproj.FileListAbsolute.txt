@@ -1654,3 +1654,5 @@ C:\Users\74909\Source\Repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.pd
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.pperc_sem_percurso.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updateUtilizadorToClient.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.DistanciaInPercPerc.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.createPercursosCriadosTable.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursosCriados.resources
