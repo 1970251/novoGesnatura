@@ -1,5 +1,5 @@
-﻿@*@model GesNaturaMVC.ViewModels.PercursoVM*@
-@model GesNaturaMVC.ViewModels.EstatisticaVM
+﻿@model GesNaturaMVC.ViewModels.PercursoVM
+@*@model GesNaturaMVC.ViewModels.EstatisticaVM*@
 @{
     ViewBag.Title = "Dados";
 }
@@ -14,21 +14,25 @@
             <div class="customDiv">
                 <div>
                     <h4>Lista de percursos criados</h4>
-                    @*@foreach (var item in Model.)
+                    @foreach (var item in Model.ListaPercursosCriadosVM)
+                    {
+                    <p>
+                        @Html.ActionLink(item.NomePercurso, "Details", "Percursos", new { Id = item.PercursoID }, null)
+                    </p>
+                        
+
+                        @*if (item.NomeCliente == User.Identity.Name.ToString())
                         {
+                            <p>
 
-                            if (item.UserName == User.Identity.Name.ToString())
-                            {
-                                <p>
 
-                                    @Html.ActionLink(item.Nome, "Details", "Percursos", new { Id = item.ID }, null)
 
-                                </p>
+                            </p>
 
-                            }
-
-                            <div class="clearfix"></div>
                         }*@
+
+                        <div class="clearfix"></div>
+                    }
 
                 </div>
             </div>

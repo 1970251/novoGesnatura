@@ -422,6 +422,22 @@
     <Compile Include="Migrations\201807171016070_updatePercursosCriados.Designer.cs">
       <DependentUpon>201807171016070_updatePercursosCriados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807171834342_update.cs" />
+    <Compile Include="Migrations\201807171834342_update.Designer.cs">
+      <DependentUpon>201807171834342_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171905481_updatePercursoCriados.cs" />
+    <Compile Include="Migrations\201807171905481_updatePercursoCriados.Designer.cs">
+      <DependentUpon>201807171905481_updatePercursoCriados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171924262_updatePercursoCriadosNome.cs" />
+    <Compile Include="Migrations\201807171924262_updatePercursoCriadosNome.Designer.cs">
+      <DependentUpon>201807171924262_updatePercursoCriadosNome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807172047560_updatePercursoCriadosNome2.cs" />
+    <Compile Include="Migrations\201807172047560_updatePercursoCriadosNome2.Designer.cs">
+      <DependentUpon>201807172047560_updatePercursoCriadosNome2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -686,6 +702,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807171016070_updatePercursosCriados.resx">
       <DependentUpon>201807171016070_updatePercursosCriados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171834342_update.resx">
+      <DependentUpon>201807171834342_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171905481_updatePercursoCriados.resx">
+      <DependentUpon>201807171905481_updatePercursoCriados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171924262_updatePercursoCriadosNome.resx">
+      <DependentUpon>201807171924262_updatePercursoCriadosNome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807172047560_updatePercursoCriadosNome2.resx">
+      <DependentUpon>201807172047560_updatePercursoCriadosNome2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

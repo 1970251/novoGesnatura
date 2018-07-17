@@ -1656,3 +1656,7 @@ C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Mi
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.DistanciaInPercPerc.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.createPercursosCriadosTable.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursosCriados.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.update.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriados.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriadosNome.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriadosNome2.resources

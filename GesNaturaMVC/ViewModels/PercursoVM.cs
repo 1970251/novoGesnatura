@@ -30,7 +30,7 @@ namespace GesNaturaMVC.ViewModels
         public List<PercursoComentarioVM> ListaComentarios { get; set; }
         public List<EspecieViewModel> ListaEspeciesVM { get; set; }
         public List<PercursoPercorridoVM> ListaPercurosPercorridosVM { get; set; }
-        public List<PercursosCriados> ListaPercursosCriados { get; set; }
+        public List<PercursoCriadoVM> ListaPercursosCriadosVM { get; set; }
 
 
     }

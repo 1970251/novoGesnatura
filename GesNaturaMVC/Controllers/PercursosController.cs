@@ -186,8 +186,9 @@ namespace GesNaturaMVC.Controllers
             percursoVM.Duracao = percurso.DuracaoAproximada;
             percursoVM.Dificuldade = percurso.Dificuldade;
             percursoVM.Tipologia = percurso.Tipologia;
-            percursoVM.ClientID = percCriado.ClientID;
+            percursoVM.ClientID = percCriado.IDCliente;
             percursoVM.NomeCliente = percCriado.NomeCliente;
+            
             percursoVM.Latitude = percurso.GPS_Lat_Inicio;
             percursoVM.Longitude = percurso.GPS_Long_Inicio;
             percursoVM.Kml = percurso.KmlPath;
@@ -316,8 +317,9 @@ namespace GesNaturaMVC.Controllers
                 db.Percursos.Add(percurso);
                 await db.SaveChangesAsync();
                 PercursosCriados percursosCriados = new PercursosCriados();
-                percursosCriados.ClientID = User.Identity.GetUserId();
+                percursosCriados.IDCliente = User.Identity.GetUserId();
                 percursosCriados.PercursoID = percurso.ID;
+                percursosCriados.NomePercurso = percurso.Nome;
                 db.PercursosCriados.Add(percursosCriados);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

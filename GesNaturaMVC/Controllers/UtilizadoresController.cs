@@ -25,9 +25,13 @@ namespace GesNaturaMVC.Controllers
         public ActionResult Dados(string clientID)
         {
             PercursoVM percVM = new PercursoVM();
+
             percVM.ListaPercurosPercorridosVM = new List<PercursoPercorridoVM>();
-            
+            percVM.ListaPercursosCriadosVM = new List<PercursoCriadoVM>();
+
+
             var listaPercursos = db.PercursosPercorridos.Where(pr => pr.ClientID == clientID).ToList();
+            var listaPercursosCriados = db.PercursosCriados.Where(pc => pc.IDCliente == clientID).ToList();
 
             foreach (var item in listaPercursos)
             {
@@ -36,10 +40,19 @@ namespace GesNaturaMVC.Controllers
                 ppercVM.ID = item.PercursoID;
                 ppercVM.ClientID = item.ClientID;
                 ppercVM.Duracao = item.Duracao;
-                
+
                 percVM.ListaPercurosPercorridosVM.Add(ppercVM);
             }
+            foreach (var item in listaPercursosCriados)
+            {
+                PercursoCriadoVM pCriadoVM = new PercursoCriadoVM();
+                pCriadoVM.IDCliente = item.IDCliente;
+                pCriadoVM.NomeCliente = item.NomeCliente;
+                pCriadoVM.PercursoID = item.PercursoID;
+                pCriadoVM.NomePercurso = item.NomePercurso;
 
+                percVM.ListaPercursosCriadosVM.Add(pCriadoVM);
+            }
 
 
 
