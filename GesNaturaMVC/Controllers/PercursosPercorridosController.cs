@@ -43,11 +43,11 @@ namespace GesNaturaMVC.Controllers
         {
             PercursosPercorridos pperc = new PercursosPercorridos();
             pperc.PercursoID = id;
-            pperc.UtilizadorID= User.Identity.GetUserId();
+            pperc.ClientID = User.Identity.GetUserId();
             pperc.Nome = nome;
             db.PercursosPercorridos.Add(pperc);
             await db.SaveChangesAsync();
-            return RedirectToAction("Dados","Utilizadores",new { clientID = pperc.UtilizadorID});
+            return RedirectToAction("Dados","Utilizadores",new { clientID = pperc.ClientID});
             //return View();
         }
 

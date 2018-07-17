@@ -27,14 +27,14 @@ namespace GesNaturaMVC.Controllers
             PercursoVM percVM = new PercursoVM();
             percVM.ListaPercurosPercorridosVM = new List<PercursoPercorridoVM>();
             
-            var listaPercursos = db.PercursosPercorridos.Where(pr => pr.UtilizadorID == clientID).ToList();
+            var listaPercursos = db.PercursosPercorridos.Where(pr => pr.ClientID == clientID).ToList();
 
             foreach (var item in listaPercursos)
             {
                 PercursoPercorridoVM ppercVM = new PercursoPercorridoVM();
                 ppercVM.Nome = item.Nome;
                 ppercVM.ID = item.PercursoID;
-                ppercVM.ClientID = item.UtilizadorID;
+                ppercVM.ClientID = item.ClientID;
                 ppercVM.Duracao = item.Duracao;
                 
                 percVM.ListaPercurosPercorridosVM.Add(ppercVM);

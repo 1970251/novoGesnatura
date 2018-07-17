@@ -405,6 +405,14 @@
     <Compile Include="Migrations\201807131731300_pperc_sem_percurso.Designer.cs">
       <DependentUpon>201807131731300_pperc_sem_percurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807170907156_updateUtilizadorToClient.cs" />
+    <Compile Include="Migrations\201807170907156_updateUtilizadorToClient.Designer.cs">
+      <DependentUpon>201807170907156_updateUtilizadorToClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807170912168_DistanciaInPercPerc.cs" />
+    <Compile Include="Migrations\201807170912168_DistanciaInPercPerc.Designer.cs">
+      <DependentUpon>201807170912168_DistanciaInPercPerc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -653,6 +661,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807131731300_pperc_sem_percurso.resx">
       <DependentUpon>201807131731300_pperc_sem_percurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807170907156_updateUtilizadorToClient.resx">
+      <DependentUpon>201807170907156_updateUtilizadorToClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807170912168_DistanciaInPercPerc.resx">
+      <DependentUpon>201807170912168_DistanciaInPercPerc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
