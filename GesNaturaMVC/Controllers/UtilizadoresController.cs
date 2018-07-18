@@ -22,6 +22,12 @@ namespace GesNaturaMVC.Controllers
         {
             return View(db.Utilizadors.ToList());
         }
+        public ActionResult Estatisticas()
+        {
+            string client = User.Identity.GetUserId();
+            return RedirectToAction("Dados", new { clientID = client });
+            
+        }
         public ActionResult Dados(string clientID)
         {
             PercursoVM percVM = new PercursoVM();

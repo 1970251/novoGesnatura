@@ -176,8 +176,6 @@ namespace GesNaturaMVC.Controllers
             percursoVM.ListaFotoPoiVM = new List<FotoPoiVM>();
             percursoVM.ListaComentarios = new List<PercursoComentarioVM>();
             percursoVM.ListaEspeciesVM = new List<EspecieViewModel>();
-                      
-            
 
             percursoVM.ID = percurso.ID;
             percursoVM.Nome = percurso.Nome;
@@ -188,7 +186,6 @@ namespace GesNaturaMVC.Controllers
             percursoVM.Tipologia = percurso.Tipologia;
             percursoVM.ClientID = percCriado.IDCliente;
             percursoVM.NomeCliente = percCriado.NomeCliente;
-            
             percursoVM.Latitude = percurso.GPS_Lat_Inicio;
             percursoVM.Longitude = percurso.GPS_Long_Inicio;
             percursoVM.Kml = percurso.KmlPath;
@@ -235,6 +232,7 @@ namespace GesNaturaMVC.Controllers
                 
                 
             }
+
             foreach(var espec in percurso.Especies)
             {
                 EspecieViewModel especVM = new EspecieViewModel();
@@ -266,21 +264,22 @@ namespace GesNaturaMVC.Controllers
             { 
                 return HttpNotFound();
             }
+
             return View(percursoVM);
         }
-        [Authorize(Roles = "Supervisor,Admin")]
+        [Authorize(Roles = "Supervisor,Admin,Cliente")]
         public ActionResult CreateMap()
         {
            return View();
         }
-        [Authorize(Roles = "Supervisor,Admin")]
+        //[Authorize(Roles = "Supervisor,Admin")]
         //public ActionResult CreateMapKml()
         //{
         //  return View();
         //}
 
         //GET: Percursos/Create
-       [Authorize(Roles = "Supervisor,Admin")]
+       [Authorize(Roles = "Supervisor,Admin,Cliente")]
             public ActionResult Create(float lat, float lng)
         {
               Percurso percurso = new Percurso();

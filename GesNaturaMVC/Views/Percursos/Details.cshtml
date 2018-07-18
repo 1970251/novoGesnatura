@@ -1,5 +1,5 @@
 ﻿@model GesNaturaMVC.ViewModels.PercursoVM
-
+@*@using Microsoft.AspNet.Identity*@
 @*@foreach (var item in Model.ListaComentarios)
 {
    
@@ -48,9 +48,11 @@
             {
                 @Html.ActionLink("| Delete", "Delete", new { id=Model.ID})
             }
+            
         }
         
     </p>
+    
     <p>
         @Html.ActionLink("Eu fiz este percurso", "Create","PercursosPercorridos", new { id = Model.ID, nome = Model.Nome },null)
     </p>

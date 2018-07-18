@@ -44,7 +44,15 @@
                             <li>@Html.ActionLink("Percursos", "Index", "Percursos")</li>
                             <li>@Html.ActionLink("Pontos de Interesse", "Index", "POIs")</li>
                             <li>@Html.ActionLink("Repositório", "Index", "Especies")</li>
+                            <li>@Html.ActionLink("Estatisticas", "Estatisticas", "Utilizadores")</li>
                             <li>@Html.ActionLink("Gestão", "Index", "Administrator")</li>
+
+                        }
+                        if (User.IsInRole("Cliente"))
+                        {
+                            <li>@Html.ActionLink("Percursos", "Index", "Percursos")</li>
+                            <li>@Html.ActionLink("Repositório", "Index", "Especies")</li>
+                            <li>@Html.ActionLink("Estatisticas", "Estatisticas", "Utilizadores")</li>
                         }
                     }
                     <li>@Html.ActionLink("Acerca", "About", "Home")</li>

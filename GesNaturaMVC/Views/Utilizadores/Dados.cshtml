@@ -16,22 +16,24 @@
                     <h4>Lista de percursos criados</h4>
                     @foreach (var item in Model.ListaPercursosCriadosVM)
                     {
-                    <p>
-                        @Html.ActionLink(item.NomePercurso, "Details", "Percursos", new { Id = item.PercursoID }, null)
-                    </p>
-                        
-
-                        @*if (item.NomeCliente == User.Identity.Name.ToString())
+                        if (item.NomePercurso == null)
+                        {
+                            <p>Utilizador sem percursos criados</p>
+                            
+                        }
+                        else
                         {
                             <p>
-
-
-
+                                @Html.ActionLink(item.NomePercurso.ToString(), "Details", "Percursos", new { Id = item.PercursoID }, null)
                             </p>
+                        }
 
-                        }*@
+                        @*<p>
+                @Html.ActionLink(item.NomePercurso.ToString(), "Details", "Percursos", new { Id = item.PercursoID }, null)
+            </p>*@
 
-                        <div class="clearfix"></div>
+
+                        @*<div class="clearfix"></div>*@
                     }
 
                 </div>

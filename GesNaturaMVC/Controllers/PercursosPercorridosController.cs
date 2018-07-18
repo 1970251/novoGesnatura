@@ -48,7 +48,7 @@ namespace GesNaturaMVC.Controllers
             db.PercursosPercorridos.Add(pperc);
             await db.SaveChangesAsync();
             return RedirectToAction("Dados","Utilizadores",new { clientID = pperc.ClientID});
-            //return View();
+            
         }
 
         // POST: PercursosPercorridos/Create
