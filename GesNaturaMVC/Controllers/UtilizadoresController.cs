@@ -34,21 +34,48 @@ namespace GesNaturaMVC.Controllers
 
             percVM.ListaPercurosPercorridosVM = new List<PercursoPercorridoVM>();
             percVM.ListaPercursosCriadosVM = new List<PercursoCriadoVM>();
+            percVM.ListaComentarios = new List<PercursoComentarioVM>();
 
 
             var listaPercursos = db.PercursosPercorridos.Where(pr => pr.ClientID == clientID).ToList();
             var listaPercursosCriados = db.PercursosCriados.Where(pc => pc.IDCliente == clientID).ToList();
+            var listaComentarios = db.PercursoComentarios.Where(c => c.ClientID == clientID).ToList();
 
+            float contaKms=0;
+            float contaHoras = 0;
+            float media = 0;
             foreach (var item in listaPercursos)
             {
                 PercursoPercorridoVM ppercVM = new PercursoPercorridoVM();
                 ppercVM.Nome = item.Nome;
                 ppercVM.ID = item.PercursoID;
                 ppercVM.ClientID = item.ClientID;
-                ppercVM.Duracao = item.Duracao;
-
+                ppercVM.Distancia = item.Distancia;
+                ppercVM.KmsPercorridos += item.Distancia;
+                contaKms += item.Distancia;
+                ViewBag.TotalKms = contaKms.ToString();
+                contaHoras += item.Duracao;
+                ViewBag.TotalHoras = contaHoras.ToString();
+                media = contaKms/contaHoras;
+                ViewBag.Media = media.ToString();
                 percVM.ListaPercurosPercorridosVM.Add(ppercVM);
             }
+            var maior = 0;
+            foreach (var item in listaComentarios)
+            {
+                PercursoComentarioVM pComentVM = new PercursoComentarioVM();
+
+                pComentVM.PercursoID = item.PercursoID;
+                pComentVM.Classificacao = item.Classificacao;
+                pComentVM.Comentario = item.Comentario;
+                if (item.Classificacao > maior)
+                {
+                    maior = item.Classificacao;
+                    ViewBag.Maior = maior.ToString();
+                }
+                percVM.ListaComentarios.Add(pComentVM);
+            }
+
             foreach (var item in listaPercursosCriados)
             {
                 PercursoCriadoVM pCriadoVM = new PercursoCriadoVM();

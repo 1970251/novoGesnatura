@@ -2,6 +2,8 @@
 @*@model GesNaturaMVC.ViewModels.EstatisticaVM*@
 @{
     ViewBag.Title = "Dados";
+
+        
 }
 
 <h3>Dados Estatísticos</h3>
@@ -40,9 +42,9 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h4>Percursos Percorridos</h4>
+            <h4>Percursos</h4>
 
-            <table>
+            @*<table>
 
                 @foreach (var item in Model.ListaPercurosPercorridosVM)
                 {
@@ -51,30 +53,30 @@
                             @Html.DisplayFor(modelItem => item.Nome)
 
                         </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.ID)
-
-                            </td>*@
+                        
                     </tr>
 
 
 
                 }
-            </table>
+            </table>*@
 
 
-            <p></p>
+            <p>Percurso com maior classificação: @ViewBag.Maior</p>
         </div>
         <div class="col-md-4">
-            <h4>Dados stats</h4>
-
+            <h4>Pessoais</h4>
+            <p>Total de Kms Percorridos: @ViewBag.TotalKms kms</p>
+            <p>Total de horas: @ViewBag.TotalHoras</p>
+            <p>Média @ViewBag.Media kms/h</p>
         </div>
     </div>
 </div>
-@*<script>
-        var class = 0;
-        function maiorClass(class) {
-
-        }
-    </script>*@
+<script>
+        
+        //function contaKms(dist) {
+        //    var total = total + dist;
+        //    return total;
+        //}
+    </script>
 

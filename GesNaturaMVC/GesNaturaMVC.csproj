@@ -438,6 +438,14 @@
     <Compile Include="Migrations\201807172047560_updatePercursoCriadosNome2.Designer.cs">
       <DependentUpon>201807172047560_updatePercursoCriadosNome2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807181716159_PercursoOnPercursosCriados.cs" />
+    <Compile Include="Migrations\201807181716159_PercursoOnPercursosCriados.Designer.cs">
+      <DependentUpon>201807181716159_PercursoOnPercursosCriados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181902361_PercursoComentarioClientID.cs" />
+    <Compile Include="Migrations\201807181902361_PercursoComentarioClientID.Designer.cs">
+      <DependentUpon>201807181902361_PercursoComentarioClientID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -714,6 +722,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807172047560_updatePercursoCriadosNome2.resx">
       <DependentUpon>201807172047560_updatePercursoCriadosNome2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181716159_PercursoOnPercursosCriados.resx">
+      <DependentUpon>201807181716159_PercursoOnPercursosCriados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181902361_PercursoComentarioClientID.resx">
+      <DependentUpon>201807181902361_PercursoComentarioClientID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace GesNaturaMVC.ViewModels
         public string ClientID { get; set; }
         public int Classificacao { get; set; }
         public float Duracao { get; set; }
+        public float Distancia { get; set; }
         public float KmsPercorridos { get; set; }
 
     }

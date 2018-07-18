@@ -54,7 +54,8 @@
     </p>
     
     <p>
-        @Html.ActionLink("Eu fiz este percurso", "Create","PercursosPercorridos", new { id = Model.ID, nome = Model.Nome },null)
+        @Html.ActionLink("Eu fiz este percurso", "Create","PercursosPercorridos", 
+       new { id = Model.ID, nome = Model.Nome, distancia = Model.Distancia, duracao = Model.Duracao },null)
     </p>
     <hr />
 </div>

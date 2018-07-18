@@ -1660,3 +1660,5 @@ C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Mi
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriados.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriadosNome.resources
 C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.updatePercursoCriadosNome2.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.PercursoOnPercursosCriados.resources
+C:\Users\74909\source\repos\novoGesnatura\GesNaturaMVC\obj\Debug\GesNaturaMVC.Migrations.PercursoComentarioClientID.resources
