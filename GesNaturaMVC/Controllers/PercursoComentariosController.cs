@@ -100,13 +100,17 @@ namespace GesNaturaMVC.Controllers
             var percursoId = int.Parse(form["PercursoID"]);
             var rating = int.Parse(form["Rating"]);
             var userName = User.Identity.GetUserName();
-
+            var cliente = User.Identity.GetUserId();
+            var percursoCriado = db.PercursosCriados.Where(pc => pc.PercursoID==percursoId).FirstOrDefault();
+            var autor = percursoCriado.IDCliente;
             PercursoComentario artComment = new PercursoComentario()
             {
                 PercursoID = percursoId,
                 Comentario = comentario,
                 Classificacao = rating,
-                UserName = userName, 
+                UserName = userName,
+                ClientID = cliente,
+                CriadorPercurso = autor,
                 DataHora = DateTime.Now
             };
 

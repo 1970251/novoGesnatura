@@ -10,17 +10,20 @@
     @Html.ActionLink("Criar Novo Percurso", "CreateMap")
     @using (Html.BeginForm(null, null, FormMethod.Post))
     {
-        @Html.AntiForgeryToken()
-        @Html.Hidden("SortField", Model.SortField)
-        @Html.Hidden("SortDirection", Model.SortDirection)
-        @Html.Hidden("PageCount", Model.PageCount)
-        @Html.Hidden("PageSize", Model.PageSize)
-        @Html.Hidden("CurrentPageIndex", Model.CurrentPageIndex)
-
-        @Html.Hidden("TipologiaSelecionada", Model.TipologiaSelecionada)
-        @Html.Hidden("DificuldadeSelecionada", Model.DificuldadeSelecionada)
-    }
         
+            @Html.AntiForgeryToken()
+            @Html.Hidden("SortField", Model.SortField)
+            @Html.Hidden("SortDirection", Model.SortDirection)
+            @Html.Hidden("PageCount", Model.PageCount)
+            @Html.Hidden("PageSize", Model.PageSize)
+            @Html.Hidden("CurrentPageIndex", Model.CurrentPageIndex)
+
+            @Html.Hidden("TipologiaSelecionada", Model.TipologiaSelecionada)
+            @Html.Hidden("DificuldadeSelecionada", Model.DificuldadeSelecionada)
+        
+
+    }
+
 </p>
 
 <div class="container">

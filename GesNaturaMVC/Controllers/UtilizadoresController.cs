@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using GesNaturaMVC.DAL;
 using GesNaturaMVC.Models;
 using GesNaturaMVC.ViewModels;
+using GesPhloraClassLibrary.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GesNaturaMVC.Controllers
@@ -39,7 +40,8 @@ namespace GesNaturaMVC.Controllers
 
             var listaPercursos = db.PercursosPercorridos.Where(pr => pr.ClientID == clientID).ToList();
             var listaPercursosCriados = db.PercursosCriados.Where(pc => pc.IDCliente == clientID).ToList();
-            var listaComentarios = db.PercursoComentarios.Where(c => c.ClientID == clientID).ToList();
+            var listaComentarios = db.PercursoComentarios.Include(p=>p.Percurso).Where(c => c.CriadorPercurso == clientID).ToList();
+            
 
             float contaKms=0;
             float contaHoras = 0;
@@ -64,15 +66,25 @@ namespace GesNaturaMVC.Controllers
             foreach (var item in listaComentarios)
             {
                 PercursoComentarioVM pComentVM = new PercursoComentarioVM();
-
+                
                 pComentVM.PercursoID = item.PercursoID;
+                ViewBag.ID = pComentVM.PercursoID;
+                pComentVM.NomePercurso = item.Percurso?.Nome??"Sem Correspondencia";
                 pComentVM.Classificacao = item.Classificacao;
                 pComentVM.Comentario = item.Comentario;
+                
+                
                 if (item.Classificacao > maior)
                 {
                     maior = item.Classificacao;
                     ViewBag.Maior = maior.ToString();
+                    ViewBag.Nome = pComentVM.NomePercurso;
                 }
+                else
+                {
+                    ViewBag.Maior = maior.ToString();
+                }
+                
                 percVM.ListaComentarios.Add(pComentVM);
             }
 

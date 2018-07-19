@@ -11,9 +11,11 @@ namespace GesNaturaMVC.ViewModels
         public int ID { get; set; }
         public int PercursoID { get; set; }
         public Percurso Percurso { get; set; }
+        public string NomePercurso { get; set; }
         public string Comentario { get; set; }
         public int Classificacao { get; set; }
         public string UserName { get; set; }
+        public string CriadorPercurso { get; set; }
         public int SomaRating { get; set; }
         //public int Rating { get; set; }
         public int ContRating { get; set; }

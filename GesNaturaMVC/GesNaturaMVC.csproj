@@ -446,6 +446,14 @@
     <Compile Include="Migrations\201807181902361_PercursoComentarioClientID.Designer.cs">
       <DependentUpon>201807181902361_PercursoComentarioClientID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191352477_criadorPercurso.cs" />
+    <Compile Include="Migrations\201807191352477_criadorPercurso.Designer.cs">
+      <DependentUpon>201807191352477_criadorPercurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191425442_nomePercurso.cs" />
+    <Compile Include="Migrations\201807191425442_nomePercurso.Designer.cs">
+      <DependentUpon>201807191425442_nomePercurso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -728,6 +736,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807181902361_PercursoComentarioClientID.resx">
       <DependentUpon>201807181902361_PercursoComentarioClientID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191352477_criadorPercurso.resx">
+      <DependentUpon>201807191352477_criadorPercurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191425442_nomePercurso.resx">
+      <DependentUpon>201807191425442_nomePercurso.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
