@@ -318,7 +318,6 @@ namespace GesNaturaMVC.Controllers
                 PercursosCriados percursosCriados = new PercursosCriados();
                 percursosCriados.IDCliente = User.Identity.GetUserId();
                 percursosCriados.PercursoID = percurso.ID;
-                percursosCriados.NomePercurso = percurso.Nome;
                 db.PercursosCriados.Add(percursosCriados);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

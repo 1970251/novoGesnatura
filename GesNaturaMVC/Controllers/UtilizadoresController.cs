@@ -38,31 +38,34 @@ namespace GesNaturaMVC.Controllers
             percVM.ListaComentarios = new List<PercursoComentarioVM>();
 
 
-            var listaPercursos = db.PercursosPercorridos.Where(pr => pr.ClientID == clientID).ToList();
-            var listaPercursosCriados = db.PercursosCriados.Where(pc => pc.IDCliente == clientID).ToList();
+            var listaPercursos = db.PercursosPercorridos.Include(p => p.Percurso).Where(pr => pr.ClientID == clientID).ToList();
+            var listaPercursosCriados = db.PercursosCriados.Include(p=>p.Percurso).Where(pc => pc.IDCliente == clientID).ToList();
             var listaComentarios = db.PercursoComentarios.Include(p=>p.Percurso).Where(c => c.CriadorPercurso == clientID).ToList();
             
 
             float contaKms=0;
             float contaHoras = 0;
             float media = 0;
+            int numeroPercursosCriados = 0;
             foreach (var item in listaPercursos)
             {
                 PercursoPercorridoVM ppercVM = new PercursoPercorridoVM();
-                ppercVM.Nome = item.Nome;
+                ppercVM.Nome = item.Percurso.Nome;
                 ppercVM.ID = item.PercursoID;
                 ppercVM.ClientID = item.ClientID;
-                ppercVM.Distancia = item.Distancia;
-                ppercVM.KmsPercorridos += item.Distancia;
-                contaKms += item.Distancia;
+                ppercVM.Distancia = item.Percurso.Distancia;
+                ppercVM.KmsPercorridos += percVM.Distancia;
+                contaKms += item.Percurso.Distancia;
                 ViewBag.TotalKms = contaKms.ToString();
-                contaHoras += item.Duracao;
+                contaHoras += item.Percurso.DuracaoAproximada;
                 ViewBag.TotalHoras = contaHoras.ToString();
                 media = contaKms/contaHoras;
                 ViewBag.Media = media.ToString();
+                
                 percVM.ListaPercurosPercorridosVM.Add(ppercVM);
             }
             var maior = 0;
+            int numeroComentarios = 0;
             foreach (var item in listaComentarios)
             {
                 PercursoComentarioVM pComentVM = new PercursoComentarioVM();
@@ -84,7 +87,7 @@ namespace GesNaturaMVC.Controllers
                 {
                     ViewBag.Maior = maior.ToString();
                 }
-                
+                numeroComentarios++;
                 percVM.ListaComentarios.Add(pComentVM);
             }
 
@@ -94,12 +97,15 @@ namespace GesNaturaMVC.Controllers
                 pCriadoVM.IDCliente = item.IDCliente;
                 pCriadoVM.NomeCliente = item.NomeCliente;
                 pCriadoVM.PercursoID = item.PercursoID;
-                pCriadoVM.NomePercurso = item.NomePercurso;
-
+                pCriadoVM.NomePercurso = item.Percurso.Nome;
+                numeroPercursosCriados++;
                 percVM.ListaPercursosCriadosVM.Add(pCriadoVM);
             }
 
+            float percentagem = 0;
 
+            percentagem = (numeroComentarios / numeroPercursosCriados) * 100;
+            ViewBag.Percentagem = percentagem.ToString();
 
             return View(percVM);
         }

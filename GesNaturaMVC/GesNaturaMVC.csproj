@@ -454,6 +454,18 @@
     <Compile Include="Migrations\201807191425442_nomePercurso.Designer.cs">
       <DependentUpon>201807191425442_nomePercurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191927072_offNomePercurso_PercursoComentario.cs" />
+    <Compile Include="Migrations\201807191927072_offNomePercurso_PercursoComentario.Designer.cs">
+      <DependentUpon>201807191927072_offNomePercurso_PercursoComentario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191931492_offNomePercurso_PercursoCriado.cs" />
+    <Compile Include="Migrations\201807191931492_offNomePercurso_PercursoCriado.Designer.cs">
+      <DependentUpon>201807191931492_offNomePercurso_PercursoCriado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191938141_offPercursoProps_PercursoPercorrido.cs" />
+    <Compile Include="Migrations\201807191938141_offPercursoProps_PercursoPercorrido.Designer.cs">
+      <DependentUpon>201807191938141_offPercursoProps_PercursoPercorrido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -742,6 +754,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807191425442_nomePercurso.resx">
       <DependentUpon>201807191425442_nomePercurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191927072_offNomePercurso_PercursoComentario.resx">
+      <DependentUpon>201807191927072_offNomePercurso_PercursoComentario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191931492_offNomePercurso_PercursoCriado.resx">
+      <DependentUpon>201807191931492_offNomePercurso_PercursoCriado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191938141_offPercursoProps_PercursoPercorrido.resx">
+      <DependentUpon>201807191938141_offPercursoProps_PercursoPercorrido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
