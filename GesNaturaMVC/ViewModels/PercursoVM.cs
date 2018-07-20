@@ -21,6 +21,8 @@ namespace GesNaturaMVC.ViewModels
         public string ClientID { get; set; }
         public string NomeCliente { get; set; }
         public int Classificacao { get; set; }
+        public float TempoGasto { get; set; }
+        public DateTime Data { get; set; }
 
         public DateTime DataHora { get; set; }
 

@@ -1,21 +1,21 @@
 ﻿@model GesNaturaMVC.ViewModels.PercursoVM
-@*@using Microsoft.AspNet.Identity*@
+
 @*@foreach (var item in Model.ListaComentarios)
-{
-   
-    var ratingTotal = item.SomaRating;
-    var numRatings = item.ContRating;
-
-    decimal rating = 0;
-    if(numRatings>0)
     {
-        rating = (ratingTotal / numRatings);
-    }
-    
-    var totalRating = decimal.Parse(rating.ToString());
-    
 
-}*@
+        var ratingTotal = item.SomaRating;
+        var numRatings = item.ContRating;
+
+        decimal rating = 0;
+        if(numRatings>0)
+        {
+            rating = (ratingTotal / numRatings);
+        }
+
+        var totalRating = decimal.Parse(rating.ToString());
+
+
+    }*@
 @{
     var ratingTotal = ViewBag.SomaRating;
     var numRatings = ViewBag.ContRating;
@@ -27,11 +27,11 @@
     }
 
     var totalRating = decimal.Parse(rating.ToString());
-    
+
 }
 <div>
     <h4>
-        @Html.DisplayFor(model=>model.Nome)
+        @Html.DisplayFor(model => model.Nome)
     </h4>
     <p>Criado por @Html.DisplayFor(model => model.NomeCliente)</p>
     <span class="starFadeN" id="sRate1"></span>
@@ -46,24 +46,25 @@
         {
             if (User.IsInRole("Admin"))
             {
-                @Html.ActionLink("| Delete", "Delete", new { id=Model.ID})
+                @Html.ActionLink("| Delete", "Delete", new { id = Model.ID })
             }
-            
+
         }
-        
+
     </p>
-    
+
     <p>
-        @Html.ActionLink("Eu fiz este percurso", "Create","PercursosPercorridos", 
+        @Html.ActionLink("Eu fiz este percurso", "Create","PercursosPercorridos",
        new { id = Model.ID, nome = Model.Nome, distancia = Model.Distancia, duracao = Model.Duracao },null)
     </p>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Eu fiz este percurso</a>
     <hr />
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="customDiv">
-                <div >
+                <div>
                     @foreach (var item in Model.ListaFotoPercursoVM)
                     {
                         <div class="mySlides fadeFoto">
@@ -73,12 +74,12 @@
                         </div>
 
                     }
-                    
-                    <br>
-                    <div >
-                        <dl >
 
-                            <dt >
+                    <br>
+                    <div>
+                        <dl>
+
+                            <dt>
                                 @Html.DisplayNameFor(model => model.Descricao)
                             </dt>
 
@@ -116,20 +117,20 @@
                             <dd>
                                 @Html.DisplayFor(model => model.Duracao) h
                             </dd>
-                          <dt>Lista de Espécies</dt>
-                          
-                          @foreach (var item in Model.ListaEspeciesVM)
-                          {
-                           <dd>@Html.ActionLink(item.Nome, "Details","Especies",new { id = item.ID },null)</dd>
-                            
-                          }
-                            
+                            <dt>Lista de Espécies</dt>
+
+                            @foreach (var item in Model.ListaEspeciesVM)
+                            {
+                                <dd>@Html.ActionLink(item.Nome, "Details", "Especies", new { id = item.ID }, null)</dd>
+
+                            }
+
                         </dl>
                     </div>
-                    
-                                       
-                        
-                    
+
+
+
+
                     @foreach (var c in Model.ListaComentarios)
                     {
                         <hr />
@@ -167,13 +168,84 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
-   
+@*<div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Quanto tempo demorou?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->*@
+<div class="container" style="width:40%;margin-top:2%">
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Gesnatura - Gestão de Percursos</h3>
+
+                </div>
+                <div class="modal-body">
+
+                    <form id="myForm">
+
+                        @*@Html.TextBoxFor(model => model.TempoGasto, new { @class = "form-control", @placeholder = "Tempo Gasto" })*@
+                        @Html.LabelFor(model => model.TempoGasto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TempoGasto, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                       
+                        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        
+                        @*@Html.TextBoxFor(model => model.Data, new { @class = "form-control", @placeholder = "Data" })*@
+
+
+                    </form>
+
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day.gif" width="150" /> @* //put any image in content folder*@
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <input type="reset" value="Submit" class="btn btn-success" id="btnSubmit" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 @Html.Partial("_CommentBox")
 
-   
+
 
 <br />
 
@@ -184,7 +256,7 @@
         SCRate();
     });
     showSlides();
-   
+
     function showSlides() {
         var i;
         var slides = document.getElementsByClassName("mySlides fadeFoto");
@@ -207,7 +279,31 @@
             $("#sRate" + i).attr('class', 'starGlowN');
         }
     }
-    
+
+    $(document).ready(function () {
+
+
+        $("#btnSubmit").click(function () {
+
+            $("#loaderDiv").show();
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Percursos/Details",
+                data: myformdata,
+                success: function () {
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+
+                }
+
+            })
+        })
+
+    })
 
 </script>
 
