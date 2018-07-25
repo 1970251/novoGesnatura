@@ -199,31 +199,32 @@
 
                 <div class="modal-header">
                     <a href="#" class="close" data-dismiss="modal">&times;</a>
-                    <h3 class="modal-title">Gesnatura - Gestão de Percursos</h3>
+                    <h4 class="modal-title">Gesnatura - Gestão de Percursos</h4>
 
                 </div>
                 <div class="modal-body">
 
                     <form id="myForm">
+                        
 
-                        @*@Html.TextBoxFor(model => model.TempoGasto, new { @class = "form-control", @placeholder = "Tempo Gasto" })*@
+                        @*@Html.TextBoxFor(model => model.Percurso.ID, new { @class = "form-control", @placeholder = "Tempo Gasto" })*@
                         @Html.LabelFor(model => model.TempoGasto, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.TempoGasto, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                       
+
                         @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        
+
                         @*@Html.TextBoxFor(model => model.Data, new { @class = "form-control", @placeholder = "Data" })*@
 
 
                     </form>
 
                     <div style="text-align:center;display:none" id="loaderDiv">
-                        <img src="~/Content/InternetSlowdown_Day.gif" width="150" /> @* //put any image in content folder*@
+                        <img src="~/Content/wait.gif" width="50" /> @* //put any image in content folder*@
                     </div>
 
 
@@ -288,7 +289,7 @@
             $("#loaderDiv").show();
 
             var myformdata = $("#myForm").serialize();
-
+            
             $.ajax({
 
                 type: "POST",

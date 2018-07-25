@@ -11,10 +11,9 @@ namespace GesNaturaMVC.Models
     public class PercursosPercorridos
     {
         public int ID { get; set; }
-        //public string Nome { get; set; }
-        //public float Duracao { get; set; }
-        //public float Distancia { get; set; }
         public string ClientID { get; set; }
+        public float TempoGasto { get; set; }
+        public DateTime Data { get; set; }
         public Utilizador Utilizador { get; set; }
         [ForeignKey("Percurso")]
         public int PercursoID { get; set; }

@@ -165,10 +165,13 @@ namespace GesNaturaMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Percurso percurso = db.Percursos.Where(p => p.ID == id).
             Include("POIs").Include("FotoPercursos").Include("PercursoComentarios").Include("Especies").FirstOrDefault();
 
             PercursosCriados percCriado = db.PercursosCriados.Where(pc => pc.PercursoID == id).FirstOrDefault();
+
+            //PercursosPercorridos percursosPercorridos = db.PercursosPercorridos.Include(p => p.Percurso).Where(ppc => ppc.PercursoID == id).FirstOrDefault();
 
             PercursoVM percursoVM = new PercursoVM();
             percursoVM.ListaPOIVM = new List<PoiVM>();

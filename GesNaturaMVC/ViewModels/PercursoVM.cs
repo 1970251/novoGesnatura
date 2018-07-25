@@ -1,4 +1,5 @@
 ﻿using GesNaturaMVC.Models;
+using GesPhloraClassLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace GesNaturaMVC.ViewModels
         public DateTime Data { get; set; }
 
         public DateTime DataHora { get; set; }
-
+        public Percurso Percurso { get; set; }
         public List<PoiVM> ListaPOIVM { get; set; }
         public List<FotoPercursoVM> ListaFotoPercursoVM { get; set; }
         public List<FotoPoiVM> ListaFotoPoiVM { get; set; }

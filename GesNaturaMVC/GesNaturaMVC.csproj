@@ -466,6 +466,10 @@
     <Compile Include="Migrations\201807191938141_offPercursoProps_PercursoPercorrido.Designer.cs">
       <DependentUpon>201807191938141_offPercursoProps_PercursoPercorrido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807202123085_alter_PercursoPercorrido.cs" />
+    <Compile Include="Migrations\201807202123085_alter_PercursoPercorrido.Designer.cs">
+      <DependentUpon>201807202123085_alter_PercursoPercorrido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -492,6 +496,7 @@
     <Content Include="App_Data\aspnet-GesNaturaMVC-20170624062328_log.ldf">
       <DependentUpon>aspnet-GesNaturaMVC-20170624062328.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -505,11 +510,13 @@
     <Content Include="Content\Images\passaro.jpg" />
     <Content Include="Content\Images\StarFade.gif" />
     <Content Include="Content\Images\StarGlow.gif" />
+    <Content Include="Content\InternetSlowdown_Day.gif" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\star-rating.css" />
     <Content Include="Content\star-rating.min.css" />
     <Content Include="Content\mapStyle.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\wait.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -763,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807191938141_offPercursoProps_PercursoPercorrido.resx">
       <DependentUpon>201807191938141_offPercursoProps_PercursoPercorrido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807202123085_alter_PercursoPercorrido.resx">
+      <DependentUpon>201807202123085_alter_PercursoPercorrido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
