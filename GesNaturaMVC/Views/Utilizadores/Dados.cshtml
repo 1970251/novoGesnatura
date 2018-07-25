@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Dados";
 
-    
-        
+    var totalRating = decimal.Parse(ViewBag.Maior);
+
+
 }
 
 <h3>Dados Estatísticos</h3>
@@ -47,38 +48,61 @@
 
             @*<table>
 
-                @foreach (var item in Model.ListaPercurosPercorridosVM)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
+            @foreach (var item in Model.ListaPercurosPercorridosVM)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
 
-                        </td>
-                        
-                    </tr>
+                    </td>
 
-
-
-                }
-            </table>*@
+                </tr>
 
 
-            <p>Percurso com maior classificação:  @ViewBag.Nome -> @ViewBag.Maior</p>
-            <p>Percentagem de Percursos Criados: @ViewBag.Percentagem%</p>
+
+            }
+        </table>*@
+
+            <br>
+            <h6>melhor classificado</h6>
+            <p style="color:darkgoldenrod">@ViewBag.Nome </p>
+            <span class="starFadeN" id="sRate1"></span>
+            <span class="starFadeN" id="sRate2"></span>
+            <span class="starFadeN" id="sRate3"></span>
+            <span class="starFadeN" id="sRate4"></span>
+            <span class="starFadeN" id="sRate5"></span>
+            <br>
+            @*<p>Percentagem de Percursos Comentados: @ViewBag.Percentagem%</p>*@
+            <br>
+            <h6>o mais comentado</h6>
+            <p style="color:darkgoldenrod">@ViewBag.MaisComentarios</p>
+
         </div>
         <div class="col-md-4">
             <h4>Pessoais</h4>
-            <p>Total de Kms Percorridos: @ViewBag.TotalKms kms</p>
-            <p>Total de horas: @ViewBag.TotalHoras</p>
-            <p>Média @ViewBag.Media kms/h</p>
+            <br>
+            <h6>Total de Kms Percorridos @*<i class="large material-icons" style="color:aqua">linear_scale</i>*@ </h6>
+            <h6 style="color:coral">@ViewBag.TotalKms kms</h6>
+            <br>
+            <h6>Total de horas de caminhada</h6>
+            <h6 style="color:coral">@ViewBag.TotalHoras</h6>
+            <br>
+            <h6>Média</h6>
+            <h6 style="color:coral">@ViewBag.Media kms/h</h6>
+            <br>
+            
         </div>
     </div>
 </div>
 <script>
-        
-        //function contaKms(dist) {
-        //    var total = total + dist;
-        //    return total;
-        //}
+    $(function () {
+        SCRate();
+    });
+
+    function SCRate() {
+        for (var i = 1; i <= @totalRating ; i++) {
+            $("#sRate" + i).attr('class', 'starGlowN');
+        }
+    }
     </script>
 

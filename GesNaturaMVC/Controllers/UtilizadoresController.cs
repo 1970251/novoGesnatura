@@ -46,7 +46,9 @@ namespace GesNaturaMVC.Controllers
             float contaKms=0;
             float contaHoras = 0;
             float media = 0;
-            int numeroPercursosCriados = 0;
+            int nmrComentariosPorPercurso = 0;
+            double numeroPercursosCriados = 0;
+            int maiorNmrComentarios = 0;
             foreach (var item in listaPercursos)
             {
                 PercursoPercorridoVM ppercVM = new PercursoPercorridoVM();
@@ -65,7 +67,8 @@ namespace GesNaturaMVC.Controllers
                 percVM.ListaPercurosPercorridosVM.Add(ppercVM);
             }
             var maior = 0;
-            int numeroComentarios = 0;
+            double numeroComentarios = 0;
+            
             foreach (var item in listaComentarios)
             {
                 PercursoComentarioVM pComentVM = new PercursoComentarioVM();
@@ -75,20 +78,47 @@ namespace GesNaturaMVC.Controllers
                 pComentVM.NomePercurso = item.Percurso?.Nome??"Sem Correspondencia";
                 pComentVM.Classificacao = item.Classificacao;
                 pComentVM.Comentario = item.Comentario;
+             
+                var listaComentPorPercurso = listaComentarios.Where(p => p.PercursoID == item.PercursoID).ToList();
                 
-                
-                if (item.Classificacao > maior)
+                if(listaComentPorPercurso.Count > 1 && numeroComentarios < listaComentarios.Count)
                 {
-                    maior = item.Classificacao;
+                    
+                    
+                    int somaPerc = 0;
+                    foreach(var perc in listaComentPorPercurso)
+                    {
+                        somaPerc += perc.Classificacao;
+                        nmrComentariosPorPercurso++;
+                        int classPerc = somaPerc / nmrComentariosPorPercurso;
+                        pComentVM.Classificacao = classPerc;
+                        
+                        if (nmrComentariosPorPercurso > maiorNmrComentarios)
+                        {
+                            maiorNmrComentarios = nmrComentariosPorPercurso;
+                            ViewBag.MaisComentarios = perc.Percurso.Nome;
+                        }
+                        
+                        
+                    }
+                    nmrComentariosPorPercurso = 0;
+                    numeroComentarios = nmrComentariosPorPercurso - 1;
+                }
+                numeroComentarios++;
+                if (pComentVM.Classificacao > maior)
+                {
+                    maior = pComentVM.Classificacao;
                     ViewBag.Maior = maior.ToString();
                     ViewBag.Nome = pComentVM.NomePercurso;
                 }
-                else
+                
+               if(numeroComentarios > listaComentarios.Count)
                 {
-                    ViewBag.Maior = maior.ToString();
+                    numeroComentarios--;
                 }
-                numeroComentarios++;
+
                 percVM.ListaComentarios.Add(pComentVM);
+                
             }
 
             foreach (var item in listaPercursosCriados)
@@ -102,9 +132,9 @@ namespace GesNaturaMVC.Controllers
                 percVM.ListaPercursosCriadosVM.Add(pCriadoVM);
             }
 
-            float percentagem = 0;
+            
+            double percentagem = (listaComentarios.Count/numeroPercursosCriados)*100;
 
-            percentagem = (numeroComentarios / numeroPercursosCriados) * 100;
             ViewBag.Percentagem = percentagem.ToString();
 
             return View(percVM);
