@@ -33,7 +33,15 @@
             zoom: 6,
             center: centro,
             mapTypeId: 'hybrid'
-        });
+         });
+         
+        var geocoder = new google.maps.Geocoder();
+
+         document.getElementById('submit').addEventListener('click', function () {
+         geocodeAddress(geocoder, map);
+             
+         });
+         
         var infowindow = new google.maps.InfoWindow({
             maxWidth: 200
         });
@@ -43,7 +51,9 @@
             suppressInfoWindows: true,
             preserveViewport: false,
             map: map
-          });
+            });
+
+           
           
           //console.dir(kmlLayer);
           //kmlLayer.event.addListenerOnce(function (kmlEvent) {
@@ -78,9 +88,7 @@
             var infoWindowContent = item.Nome;
             
             var coord = { lat: item.GPS_Lat_Inicio, lng: item.GPS_Long_Inicio };
-           
-            //var coord = { lat: item.Latitude, lng: item.Longitude };
-            
+                                  
             var marker = new google.maps.Marker({
               position: coord,
               //map: map
@@ -132,42 +140,63 @@
   //    preserveViewport: false,
   //    map: map
   //  });
-  //}
+    //}
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        var zoom = 10;
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            
+            if (status === 'OK') {
+                
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.fitBounds(results[0].geometry.viewport);
+                
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+            
+        });
+    }
     
 </script>
 <script>
-    function initialize() {
-        var center = new google.maps.LatLng(51.5074, 0.1278);
+    //function initialize() {
+    //    var center = new google.maps.LatLng(51.5074, 0.1278);
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 3,
-            center: center,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+    //    var map = new google.maps.Map(document.getElementById('map'), {
+    //        zoom: 3,
+    //        center: center,
+    //        mapTypeId: google.maps.MapTypeId.ROADMAP
+    //    });
 
-        var markers = [];
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(51.5074, 0.1278)
-        });
-        markers.push(marker);
-        var marker1 = new google.maps.Marker({
-            position: new google.maps.LatLng(51.5077, 0.1278)
-        });
-        markers.push(marker1);
-        var marker2 = new google.maps.Marker({
-            position: new google.maps.LatLng(51.5079, 0.1278)
-        });
-        markers.push(marker2);
+    //    var markers = [];
+    //    var marker = new google.maps.Marker({
+    //        position: new google.maps.LatLng(51.5074, 0.1278)
+    //    });
+    //    markers.push(marker);
+    //    var marker1 = new google.maps.Marker({
+    //        position: new google.maps.LatLng(51.5077, 0.1278)
+    //    });
+    //    markers.push(marker1);
+    //    var marker2 = new google.maps.Marker({
+    //        position: new google.maps.LatLng(51.5079, 0.1278)
+    //    });
+    //    markers.push(marker2);
 
-        var options = {
-            imagePath:'Content/Images/icon.png'
-        };
+    //    var options = {
+    //        imagePath:'Content/Images/icon.png'
+    //    };
 
-        var markerCluster = new MarkerClusterer(map, markers, options);
-    }
+    //    var markerCluster = new MarkerClusterer(map, markers, options);
+    //}
 
     //google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+<div id="floating-panel">
+    <h6>Pesquisar Percursos por Área Geográfica</h6>
+    <input id="address" type="text" >
+    <input id="submit" type="button" value="Pesquisa">
+</div>
 <div id="map"></div>
 
 <script async defer
