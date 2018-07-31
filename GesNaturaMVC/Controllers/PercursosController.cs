@@ -157,6 +157,19 @@ namespace GesNaturaMVC.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public ActionResult Pesquisa(PercursoVM model, string btn = null)
+        {
+            Percurso percurso = db.Percursos.FirstOrDefault();
+
+            model.ID = percurso.ID;
+            model.Latitude = percurso.GPS_Lat_Inicio;
+            model.Longitude = percurso.GPS_Long_Inicio;
+            model.Nome = percurso.Nome;
+            model.Descricao = percurso.Descricao;
+
+            return View(model);
+        }
         // GET: Percursos/Details/5
         //[Authorize(Roles = "Supervisor,Admin")]
         public ActionResult Details(int? id)

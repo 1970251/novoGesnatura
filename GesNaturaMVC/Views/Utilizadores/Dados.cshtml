@@ -1,14 +1,15 @@
 ﻿@model GesNaturaMVC.ViewModels.PercursoVM
 @*@model GesNaturaMVC.ViewModels.EstatisticaVM*@
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Dados";
 
     var totalRating = decimal.Parse(ViewBag.Maior);
-
+    var nome = User.Identity.GetUserName();
 
 }
 
-<h3>Dados Estatísticos</h3>
+<h3>Bemvindo @nome</h3>
 
 
 <br>

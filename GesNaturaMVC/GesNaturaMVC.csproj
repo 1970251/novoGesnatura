@@ -693,6 +693,7 @@
     <Content Include="Views\PercursosPercorridos\Edit.cshtml" />
     <Content Include="Views\PercursosPercorridos\Index.cshtml" />
     <Content Include="Views\Utilizadores\Dados.cshtml" />
+    <Content Include="Views\Percursos\Pesquisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Foto\" />
