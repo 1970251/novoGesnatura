@@ -135,7 +135,7 @@ namespace GesNaturaMVC.Controllers
             {
                 model.CurrentPageIndex = 0;
             }
-            model.PageSize = 2;
+            model.PageSize = 6;
             model.PageCount = ((res.Count() + model.PageSize - 1) / model.PageSize);
             if (model.CurrentPageIndex > model.PageCount)
             {
@@ -153,6 +153,7 @@ namespace GesNaturaMVC.Controllers
 
             model.Latitude = percurso.GPS_Lat_Inicio;
             model.Longitude = percurso.GPS_Long_Inicio;
+            model.CodPostal = percurso.CodPostal;
             model.Kml = percurso.KmlPath;
 
             return View(model);
@@ -296,11 +297,14 @@ namespace GesNaturaMVC.Controllers
 
         //GET: Percursos/Create
        [Authorize(Roles = "Supervisor,Admin,Cliente")]
-            public ActionResult Create(float lat, float lng)
+            public ActionResult Create(float lat, float lng, string morada, string localidade, int cod)
         {
               Percurso percurso = new Percurso();
               percurso.GPS_Lat_Inicio = lat;
               percurso.GPS_Long_Inicio = lng;
+              percurso.Morada = morada;
+              percurso.Localidade = localidade;
+              percurso.CodPostal = cod;
 
               
               ViewBag.POIs = new SelectList(db.POIs, "ID", "Nome");
@@ -324,7 +328,7 @@ namespace GesNaturaMVC.Controllers
     // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nome,Descricao,Tipologia,Distancia,DuracaoAproximada,Dificuldade,GPS_Lat_Inicio,GPS_Long_Inicio,KmlPath,POIs,Especies")] Percurso percurso)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Nome,Descricao,Tipologia,Distancia,DuracaoAproximada,Dificuldade,GPS_Lat_Inicio,GPS_Long_Inicio,KmlPath,POIs,Especies,Morada,CodPostal")] Percurso percurso)
         {
 
             if (ModelState.IsValid)

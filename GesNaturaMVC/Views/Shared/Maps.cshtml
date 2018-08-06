@@ -1,11 +1,4 @@
-﻿@*@model IEnumerable<GesPhloraClassLibrary.Models.Percurso>*@
-@model GesNaturaMVC.ViewModels.PercursoVM
-
-
-@*<head>
-  <link rel="stylesheet" href="style.css" />
-</head>*@
-
+﻿@model GesNaturaMVC.ViewModels.PercursoVM
 
 
 <style>
@@ -22,8 +15,7 @@
  function initMap() {
 
         var model = @Html.Raw(Json.Encode(Model));
-        //console.dir(model);
-
+        
         //var centro = { lat: model[0].GPS_Lat_Inicio, lng: model[0].GPS_Long_Inicio }
         //var centro = { lat: model[0].Latitude, lng: model[0].Longitude }
         var centro = { lat: model.Latitude, lng: model.Longitude }
@@ -83,12 +75,13 @@
 
 
         var markers = [];
-        for (var i = 0; i < model.Cust.length; i++) {
+     for (var i = 0; i < model.Cust.length; i++) {
+            
             var item = model.Cust[i];
             var infoWindowContent = item.Nome;
-            
             var coord = { lat: item.GPS_Lat_Inicio, lng: item.GPS_Long_Inicio };
-                                  
+
+         
             var marker = new google.maps.Marker({
               position: coord,
               //map: map
@@ -143,9 +136,9 @@
     //}
     function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
-        var zoom = 10;
+        
         geocoder.geocode({ 'address': address }, function (results, status) {
-            
+
             if (status === 'OK') {
                 
                 resultsMap.setCenter(results[0].geometry.location);
@@ -192,11 +185,11 @@
 
     //google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-<div id="floating-panel">
+@*<div id="floating-panel">
     <h6>Pesquisar Percursos por Área Geográfica</h6>
     <input id="address" type="text" >
     <input id="submit" type="button" value="Pesquisa">
-</div>
+</div>*@
 <div id="map"></div>
 
 <script async defer

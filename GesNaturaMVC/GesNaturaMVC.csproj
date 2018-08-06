@@ -474,6 +474,26 @@
     <Compile Include="Migrations\201807251605137_percpercSemData.Designer.cs">
       <DependentUpon>201807251605137_percpercSemData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807311627019_addMoradaPercurso.cs" />
+    <Compile Include="Migrations\201807311627019_addMoradaPercurso.Designer.cs">
+      <DependentUpon>201807311627019_addMoradaPercurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807311904315_updateCodPostal.cs" />
+    <Compile Include="Migrations\201807311904315_updateCodPostal.Designer.cs">
+      <DependentUpon>201807311904315_updateCodPostal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807311916055_codPostFloat.cs" />
+    <Compile Include="Migrations\201807311916055_codPostFloat.Designer.cs">
+      <DependentUpon>201807311916055_codPostFloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807311922012_codPostInt.cs" />
+    <Compile Include="Migrations\201807311922012_codPostInt.Designer.cs">
+      <DependentUpon>201807311922012_codPostInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808031548047_addLocalidade.cs" />
+    <Compile Include="Migrations\201808031548047_addLocalidade.Designer.cs">
+      <DependentUpon>201808031548047_addLocalidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -781,6 +801,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807251605137_percpercSemData.resx">
       <DependentUpon>201807251605137_percpercSemData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311627019_addMoradaPercurso.resx">
+      <DependentUpon>201807311627019_addMoradaPercurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311904315_updateCodPostal.resx">
+      <DependentUpon>201807311904315_updateCodPostal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311916055_codPostFloat.resx">
+      <DependentUpon>201807311916055_codPostFloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311922012_codPostInt.resx">
+      <DependentUpon>201807311922012_codPostInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031548047_addLocalidade.resx">
+      <DependentUpon>201808031548047_addLocalidade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

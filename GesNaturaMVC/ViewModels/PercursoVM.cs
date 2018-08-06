@@ -24,7 +24,7 @@ namespace GesNaturaMVC.ViewModels
         public int Classificacao { get; set; }
         public float TempoGasto { get; set; }
         public DateTime Data { get; set; }
-
+        public int CodPostal { get; set; }
         public DateTime DataHora { get; set; }
         public Percurso Percurso { get; set; }
         public List<PoiVM> ListaPOIVM { get; set; }
