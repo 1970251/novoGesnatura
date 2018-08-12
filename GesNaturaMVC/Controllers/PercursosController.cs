@@ -15,7 +15,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class PercursosController : Controller
     {
-        private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaDbContext db = new IGesNaturaDbContext();
 
     //public async Task<ActionResult> Index()
     //{
@@ -297,13 +297,13 @@ namespace GesNaturaMVC.Controllers
 
         //GET: Percursos/Create
        [Authorize(Roles = "Supervisor,Admin,Cliente")]
-            public ActionResult Create(float lat, float lng, string morada, string localidade, int cod)
+            public ActionResult Create(float lat, float lng, string morada, int cod)
         {
               Percurso percurso = new Percurso();
               percurso.GPS_Lat_Inicio = lat;
               percurso.GPS_Long_Inicio = lng;
               percurso.Morada = morada;
-              percurso.Localidade = localidade;
+              //percurso.Localidade = localidade;
               percurso.CodPostal = cod;
 
               

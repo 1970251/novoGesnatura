@@ -40,33 +40,25 @@
             
             </div>
         <div class="col-md-4">
-
+            <br />
                 <table>
                     <tr>
-
                         <th>
                             <p>Tipologia</p>
-
                             @Html.DropDownListFor(model => model.Tipologia,
                             new SelectList(Model.CustDDL, "Tipologia", "Tipologia", Model.TipologiaSelecionada), "All", new { @id = "fn" })
 
                         </th>
-
                         <th>
                             <p>Dificuldade</p>
                             @Html.DropDownListFor(model => model.Dificuldade,
                             new SelectList(Model.CustDDL, "Dificuldade", "Dificuldade", Model.DificuldadeSelecionada), "All", new { @id = "ln" })
                         </th>
                     </tr>
-
-                </table>
-           
+                </table>   
         </div>
         </div>
     </div>
-                
-
-
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">

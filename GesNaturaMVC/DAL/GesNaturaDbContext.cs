@@ -8,10 +8,10 @@ using GesNaturaMVC.Models;
 
 namespace GesNaturaMVC.DAL
 {
-    public class GesNaturaDbContext : ApplicationDbContext
+    public class IGesNaturaDbContext : ApplicationDbContext, IGesNaturaContext
 
     {
-        public GesNaturaDbContext() : base() { }
+        public IGesNaturaDbContext() : base() { }
         public DbSet<Percurso> Percursos { get; set; }
         public DbSet<POI> POIs { get; set; }
         public DbSet<Reino> Reinoes { get; set; }
@@ -35,5 +35,14 @@ namespace GesNaturaMVC.DAL
         public DbSet<PercursosPercorridos> PercursosPercorridos { get; set; }
 
         public System.Data.Entity.DbSet<GesNaturaMVC.Models.PercursosCriados> PercursosCriados { get; set; }
+
+        public DbSet<Reino> Reinos => throw new NotImplementedException();
+
+        public void MarcarComoModificado(Reino item)
+        {
+            Entry(item).State = EntityState.Modified;
+            //throw new NotImplementedException();
+        }
+        
     }
 }

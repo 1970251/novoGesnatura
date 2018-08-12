@@ -206,12 +206,13 @@
                         } else {
                             window.alert('Geocoder failed due to: ' + status);
                         }
-                        var actionPercurso = '@Html.ActionLink("Gravar Coordenadas", "Create","Percursos", new { lat = "latitude", lng = "longitude", Morada = "morada",Localidade = "localidade",cod = "codPostal" },null)';
+                        @*var actionPercurso = '@Html.ActionLink("Gravar Coordenadas", "Create","Percursos", new { lat = "latitude", lng = "longitude", Morada = "morada",Localidade = "localidade",cod = "codPostal" },null)';*@
+                        var actionPercurso = '@Html.ActionLink("Gravar Coordenadas", "Create","Percursos", new { lat = "latitude", lng = "longitude", Morada = "morada",cod = "codPostal" },null)';
                         actionPercurso = actionPercurso.replace('latitude', latitude);
                         actionPercurso = actionPercurso.replace('longitude', longitude);
                         actionPercurso = actionPercurso.replace('codPostal', codPostal);
                         actionPercurso = actionPercurso.replace('morada', morada);
-                        actionPercurso = actionPercurso.replace('localidade', localidade);
+                        //actionPercurso = actionPercurso.replace('localidade', localidade);
                             var texto = '<div>' + gestao + '</div>' + actionPercurso + '</div>';
 
                         infoWindowPoi.setContent(texto, markerNovo);

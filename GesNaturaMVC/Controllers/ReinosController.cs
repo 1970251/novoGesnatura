@@ -14,12 +14,25 @@ namespace GesNaturaMVC.Controllers
 {
     public class ReinosController : Controller
     {
-        private GesNaturaDbContext db = new GesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new IGesNaturaDbContext();
 
-        // GET: Reinos
-        public async Task<ActionResult> Index()
+        public ReinosController() { }
+
+        public ReinosController(IGesNaturaContext context)
         {
-            return View(await db.Reinoes.ToListAsync());
+            db = context;
+        }
+        // GET: Reinos
+        //public async Task<ActionResult> Index()
+        //{
+        //    return View(await db.Reinoes.ToListAsync());
+        //}
+
+        //Metodo não assincrono para testes
+        public ActionResult Index()
+        {
+            return View(db.Reinoes.ToList());
         }
 
         // GET: Reinos/Details/5
@@ -48,12 +61,13 @@ namespace GesNaturaMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Nome")] Reino reino)
+        public ActionResult Create([Bind(Include = "ID,Nome")] Reino reino)
         {
             if (ModelState.IsValid)
             {
                 db.Reinoes.Add(reino);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -80,12 +94,14 @@ namespace GesNaturaMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Nome")] Reino reino)
+        public ActionResult Edit([Bind(Include = "ID,Nome")] Reino reino)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reino).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(reino).State = EntityState.Modified;
+                db.MarcarComoModificado(reino);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(reino);
@@ -113,7 +129,8 @@ namespace GesNaturaMVC.Controllers
         {
             Reino reino = await db.Reinoes.FindAsync(id);
             db.Reinoes.Remove(reino);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

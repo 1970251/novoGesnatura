@@ -14,7 +14,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class PercursosCriadosController : Controller
     {
-        private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaDbContext db = new IGesNaturaDbContext();
 
         // GET: PercursosCriados
         public async Task<ActionResult> Index()

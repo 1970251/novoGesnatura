@@ -16,7 +16,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class UtilizadoresController : Controller
     {
-        private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaDbContext db = new IGesNaturaDbContext();
 
         // GET: Utilizadores
         public ActionResult Index()

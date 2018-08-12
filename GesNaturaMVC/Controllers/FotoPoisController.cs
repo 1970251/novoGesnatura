@@ -15,7 +15,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class FotoPoisController : Controller
     {
-        private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaDbContext db = new IGesNaturaDbContext();
 
         // GET: FotoPois
         public async Task<ActionResult> Index()
