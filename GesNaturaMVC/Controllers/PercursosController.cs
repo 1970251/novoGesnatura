@@ -15,16 +15,23 @@ namespace GesNaturaMVC.Controllers
 {
     public class PercursosController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
-    //public async Task<ActionResult> Index()
-    //{
-     
-    //  var percursos = db.Percursos.ToListAsync();
-    //  return View(await percursos);
-    //}
-    // GET: Percursos
-    public ActionResult Index(PercursoVM model = null)
+        public PercursosController() { }
+
+        public PercursosController(IGesNaturaContext context)
+        {
+            db = context;
+        }
+        //public async Task<ActionResult> Index()
+        //{
+
+        //  var percursos = db.Percursos.ToListAsync();
+        //  return View(await percursos);
+        //}
+        // GET: Percursos
+        public ActionResult Index(PercursoVM model = null)
         {
             Percurso percurso = db.Percursos.FirstOrDefault();
 
@@ -334,12 +341,14 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Percursos.Add(percurso);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 PercursosCriados percursosCriados = new PercursosCriados();
                 percursosCriados.IDCliente = User.Identity.GetUserId();
                 percursosCriados.PercursoID = percurso.ID;
                 db.PercursosCriados.Add(percursosCriados);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.POIs = new SelectList(db.POIs, "ID", "Nome", percurso.POIs);
@@ -373,8 +382,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(percurso).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(percurso).State = EntityState.Modified;
+                db.MarcarComoModificado(percurso);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(percurso);
@@ -403,7 +414,8 @@ namespace GesNaturaMVC.Controllers
         {
             Percurso percurso = await db.Percursos.FindAsync(id);
             db.Percursos.Remove(percurso);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         //[HttpPost]

@@ -14,8 +14,15 @@ namespace GesNaturaMVC.Controllers
 {
     public class POIsController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
+        public POIsController() { }
+
+        public POIsController(IGesNaturaContext context)
+        {
+            db = context;
+        }
         // GET: POIs
         public async Task<ActionResult> Index()
         {
@@ -61,7 +68,8 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.POIs.Add(pOI);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
+                //await db.SaveChangesAsync();
                 
                 return RedirectToAction("Details","Percursos",new { id=perc });
             }
@@ -95,8 +103,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pOI).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(pOI).State = EntityState.Modified;
+                db.MarcarComoModificado(pOI);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.PercursoId = new SelectList(db.Percursos, "ID", "Nome", pOI.PercursoId);
@@ -125,7 +135,8 @@ namespace GesNaturaMVC.Controllers
         {
             POI pOI = await db.POIs.FindAsync(id);
             db.POIs.Remove(pOI);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -15,7 +15,7 @@ namespace GesNaturaMVC.Controllers
     public class ReinosController : Controller
     {
         //private GesNaturaDbContext db = new GesNaturaDbContext();
-        private IGesNaturaContext db = new IGesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
         public ReinosController() { }
 
@@ -23,17 +23,17 @@ namespace GesNaturaMVC.Controllers
         {
             db = context;
         }
-        // GET: Reinos
-        //public async Task<ActionResult> Index()
-        //{
-        //    return View(await db.Reinoes.ToListAsync());
-        //}
+        //GET: Reinos
+        public async Task<ActionResult> Index()
+        {
+            return View(await db.Reinoes.ToListAsync());
+        }
 
         //Metodo não assincrono para testes
-        public ActionResult Index()
-        {
-            return View(db.Reinoes.ToList());
-        }
+        //public ViewResult Index()
+        //{
+        //    return View(db.Reinoes.ToList());
+        //}
 
         // GET: Reinos/Details/5
         public async Task<ActionResult> Details(int? id)

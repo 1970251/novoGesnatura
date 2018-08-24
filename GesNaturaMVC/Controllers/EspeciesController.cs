@@ -16,15 +16,20 @@ namespace GesNaturaMVC.Controllers
 {
     public class EspeciesController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
+        public EspeciesController() { }
+
+        public EspeciesController(IGesNaturaContext context)
+        {
+            db = context;
+        }
         // GET: Especies
         public async Task<ActionResult> Index()
         {
             
             var especies = db.Especies.Include(e => e.Genero);
-            
-
             return View(await especies.ToListAsync());
             
         }
@@ -99,7 +104,8 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Especies.Add(especie);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
 
                 return RedirectToAction("Create", "FotoAtlas", new { id = especie.ID });
                 //return RedirectToAction("Create", new RouteValueDictionary(
@@ -139,8 +145,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(especie).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(especie).State = EntityState.Modified;
+                db.MarcarComoModificado(especie);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.GeneroID = new SelectList(db.Generoes, "ID", "Nome", especie.GeneroID);
@@ -170,7 +178,8 @@ namespace GesNaturaMVC.Controllers
         {
             Especie especie = await db.Especies.FindAsync(id);
             db.Especies.Remove(especie);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

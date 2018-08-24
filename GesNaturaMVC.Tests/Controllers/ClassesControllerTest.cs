@@ -12,27 +12,41 @@ namespace GesNaturaMVC.Tests.Controllers
     [TestClass]
     public class ClassesControllerTest
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
-
         [TestMethod]
-        public async Task TestIndex()
+        public async Task Details()
         {
+            //Arrange
+            var context = new TestGesNaturaAppContext();
+            context.Classes.Add(new Classe { ID = 1, Nome = "Mamiferos", ReinoID=1});
+            context.Classes.Add(new Classe { ID = 2, Nome = "Repteis", ReinoID=1 });
+            var controller = new ClassesController(context);
 
-            // Arrange
-            //ClassesController controller = new ClassesController();
-            //var contextoDb = new GesNaturaDbContext();
-            var classes = db.Classes.Include(c => c.Reino);
-            var controller = new ClassesController();
-            
-            // Act
+            //Act
+            var result = await controller.Details(1) as ViewResult;
+            var classe = (Classe)result.ViewData.Model;
 
-            var actionResult = await controller.Index();
-            var result = actionResult as ViewResult;
-                       
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.Equals("Index", result.ViewName);
+            //Assert
+            Assert.AreEqual("Mamiferos", classe.Nome);
         }
+        //[TestMethod]
+        //public async Task TestIndex()
+        //{
+
+        //    // Arrange
+        //    //ClassesController controller = new ClassesController();
+        //    //var contextoDb = new GesNaturaDbContext();
+        //    var classes = db.Classes.Include(c => c.Reino);
+        //    var controller = new ClassesController();
+            
+        //    // Act
+
+        //    var actionResult = await controller.Index();
+        //    var result = actionResult as ViewResult;
+                       
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //    Assert.Equals("Index", result.ViewName);
+        //}
         //[TestMethod]
         //public void Index()
         //{
@@ -60,17 +74,17 @@ namespace GesNaturaMVC.Tests.Controllers
         //    Assert.IsNotNull("");
 
         //}
-        [TestMethod]
-        public async Task TestDetails()
-        {
-            var controller = new ClassesController();
-            var classe = await db.Classes.FindAsync(2);
+        //[TestMethod]
+        //public async Task TestDetails()
+        //{
+        //    var controller = new ClassesController();
+        //    var classe = await db.Classes.FindAsync(2);
             
-            var result = controller.Details(classe.ID).Result as ViewResult;
-            var classes = (Classe)result.ViewData.Model;
-            Assert.AreEqual("Mamiferos", classes.Nome);
-            //Assert.AreEqual("Details", result.);
-        }
+        //    var result = controller.Details(classe.ID).Result as ViewResult;
+        //    var classes = (Classe)result.ViewData.Model;
+        //    Assert.AreEqual("Mamiferos", classes.Nome);
+        //    //Assert.AreEqual("Details", result.);
+        //}
         //[TestMethod]
         //public void TestDetailsRedirect()
         //{

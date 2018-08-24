@@ -14,8 +14,15 @@ namespace GesNaturaMVC.Controllers
 {
     public class ClassesController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
+        public ClassesController() { }
+
+        public ClassesController(IGesNaturaContext context)
+        {
+            db = context;
+        }
         // GET: Classes
         public async Task<ActionResult> Index()
         {
@@ -55,7 +62,8 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Classes.Add(classe);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -88,8 +96,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(classe).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(classe).State = EntityState.Modified;
+                db.MarcarComoModificado(classe);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ReinoID = new SelectList(db.Reinoes, "ID", "Nome", classe.ReinoID);
@@ -118,7 +128,8 @@ namespace GesNaturaMVC.Controllers
         {
             Classe classe = await db.Classes.FindAsync(id);
             db.Classes.Remove(classe);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

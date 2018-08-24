@@ -16,7 +16,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class FotoAtlasController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        private GesNaturaDbContext db = new GesNaturaDbContext();
 
         // GET: FotoAtlas
         [Authorize(Roles ="Admin,Supervisor")]

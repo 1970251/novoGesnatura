@@ -8,17 +8,17 @@ using System.Web;
 
 namespace GesNaturaMVC.DAL
 {
-    public class EspecieDbInitializer : CreateDatabaseIfNotExists<IGesNaturaDbContext>
+    public class EspecieDbInitializer : CreateDatabaseIfNotExists<GesNaturaDbContext>
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        private GesNaturaDbContext db = new GesNaturaDbContext();
 
-        protected override void Seed(IGesNaturaDbContext context)
+        protected override void Seed(GesNaturaDbContext context)
         {
             base.Seed(context);
             createEspecie(context);
             
         }
-        private void createEspecie(IGesNaturaDbContext context)
+        private void createEspecie(GesNaturaDbContext context)
         {
             var familia = new Familia { Nome = "Turdidade", OrdemID = 1 };
             var genero = new Genero { Nome = "Turdus", FamiliaID = 5 };

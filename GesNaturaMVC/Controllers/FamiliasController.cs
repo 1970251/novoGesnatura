@@ -14,8 +14,15 @@ namespace GesNaturaMVC.Controllers
 {
     public class FamiliasController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
+        public FamiliasController() { }
+
+        public FamiliasController(IGesNaturaContext context)
+        {
+            db = context;
+        }
         // GET: Familias
         public async Task<ActionResult> Index()
         {
@@ -55,7 +62,8 @@ namespace GesNaturaMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.Familias.Add(familia);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -88,8 +96,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(familia).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(familia).State = EntityState.Modified;
+                db.MarcarComoModificado(familia);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.OrdemID = new SelectList(db.Ordems, "ID", "Nome", familia.OrdemID);
@@ -118,7 +128,8 @@ namespace GesNaturaMVC.Controllers
         {
             Familia familia = await db.Familias.FindAsync(id);
             db.Familias.Remove(familia);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

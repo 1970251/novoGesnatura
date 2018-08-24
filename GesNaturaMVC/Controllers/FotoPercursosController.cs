@@ -16,8 +16,15 @@ namespace GesNaturaMVC.Controllers
 {
     public class FotoPercursosController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        //private GesNaturaDbContext db = new GesNaturaDbContext();
+        private IGesNaturaContext db = new GesNaturaDbContext();
 
+        public FotoPercursosController() { }
+
+        public FotoPercursosController(IGesNaturaContext context)
+        {
+            db = context;
+        }
         // GET: FotoPercursos
         public async Task<ActionResult> Index()
         {
@@ -79,7 +86,8 @@ namespace GesNaturaMVC.Controllers
                     fotoPercursos.Caminho = caminho;
                 }
                 db.FotoPercursos.Add(fotoPercursos);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 //return RedirectToAction("Index");
                 return RedirectToAction("Details", "Percursos", new { id = fotoPercursos.PercursoID });
                 
@@ -115,8 +123,10 @@ namespace GesNaturaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fotoPercursos).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(fotoPercursos).State = EntityState.Modified;
+                db.MarcarComoModificado(fotoPercursos);
+                //await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.PercursoID = new SelectList(db.Percursos, "ID", "Nome", fotoPercursos.PercursoID);
@@ -145,7 +155,8 @@ namespace GesNaturaMVC.Controllers
         {
             FotoPercursos fotoPercursos = await db.FotoPercursos.FindAsync(id);
             db.FotoPercursos.Remove(fotoPercursos);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GesNaturaMVC.Controllers;
 using System.Web.Mvc;
 using GesNaturaMVC.ViewModels;
+using GesPhloraClassLibrary.Models;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace GesNaturaMVC.Tests.Controllers
 {
@@ -62,14 +65,50 @@ namespace GesNaturaMVC.Tests.Controllers
         #endregion
 
         [TestMethod]
-        public void TestDetailsView()
+        public void Details()
         {
-            var controller = new EspeciesController();
-            var controllerVM = new EspecieViewModel();
+            var context = new TestGesNaturaAppContext();
 
-            var result = controller.Details(5) as ViewResult;
-            Assert.AreEqual("Details", result.ViewName);
+            var genero = new Genero();
+            var reino = new Reino();
+            var classe = new Classe();
+            var ordem = new Ordem();
+            var familia = new Familia();
+            var esp = new Especie();
 
+            context.Reinoes.Add(new Reino { ID = 1, Nome = "Animal" });
+            context.Classes.Add(new Classe { ID = 1, Nome = "Aves", ReinoID = 1 });
+            context.Ordems.Add(new Ordem { ID = 1, Nome = "Passeriformes", ClasseID = 1 });
+            context.Familias.Add(new Familia { ID = 1, Nome = "Motacillidae", OrdemID = 1 });
+            context.Generoes.Add(new Genero { ID = 1, Nome = "Motacilla", FamiliaID = 1 });
+
+            //especieVM.Reino = especie.Genero.Familia.Ordem.Classe.Reino.Nome;
+            
+
+            context.Especies.Add(new Especie { ID = 1, Nome = "Alvéola-branca", GeneroID = 1 });
+            context.Especies.Add(new Especie { ID = 2, Nome = "Pardal-comum", GeneroID = 1 });
+                      
+            //var especieVM = new EspecieViewModel();
+            //especieVM.Familia = "Motacillidae";
+            //especieVM.Genero.Nome = "Motacilla";
+
+            //viewModel.ID = 1;
+            //viewModel.Nome = "Alvéola-branca";
+            
+            //var result = await controller.Details(1) as ViewResult;
+            //var classe = (Classe)result.ViewData.Model;
+
+
+            var controller = new EspeciesController(context);
+            //var viewModel = controller.ViewData.Model as IEnumerable<Especie>;
+            
+            var result = controller.Details(1) as ViewResult;
+            var especie = (Especie)result.ViewData.Model;
+            
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Alvéola-branca", especie.Nome);
+            //Assert.IsTrue(viewModel.Count() == 2);
+           
         }
     }
 }

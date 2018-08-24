@@ -14,7 +14,7 @@ namespace GesNaturaMVC.Controllers
 {
     public class OrdemsController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        private GesNaturaDbContext db = new GesNaturaDbContext();
 
         // GET: Ordems
         public async Task<ActionResult> Index()

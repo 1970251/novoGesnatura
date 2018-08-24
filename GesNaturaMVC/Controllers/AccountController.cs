@@ -19,7 +19,7 @@ namespace GesNaturaMVC.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private IGesNaturaDbContext db = new IGesNaturaDbContext();
+        private GesNaturaDbContext db = new GesNaturaDbContext();
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
